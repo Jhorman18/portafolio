@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="mx-42">
+      <div className="md:mx-42">
         <div className="w-full bg-white rounded-3xl shadow-lg p-8">
           <div>
             <Routes>

@@ -8,7 +8,7 @@ export default function Contacto() {
       <ul className="text-sm text-gray-700 space-y-3 mb-8">
         <li className="flex gap-2">
           <span className="mt-1">•</span>
-          <span>Email: tu@email.com • Teléfono: +34 XXX XXX XXX</span>
+          <span>Email: jhorman@ejemplo.com • Teléfono: +57 300 123 4567</span>
         </li>
         <li className="flex gap-2">
           <span className="mt-1">•</span>
@@ -20,7 +20,7 @@ export default function Contacto() {
       <hr className="border-gray-200 mb-4" />
 
       <ul className="text-sm text-gray-700 space-y-2">
-        <li className="flex gap-2"><span>•</span> HTML y CSS</li>
+        <li className="flex gap-2"><span>•</span> HTML - CSS - JS - React - Node.js - Tailwind CSS - SQL</li>
         <li className="flex gap-2"><span>•</span> Comunicación</li>
         <li className="flex gap-2"><span>•</span> Trabajo en equipo</li>
       </ul>
