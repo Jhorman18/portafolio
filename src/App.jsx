@@ -1,29 +1,30 @@
-import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Presentacion from "./pages/Presentacion";
 import Experiencia from "./pages/Experiencia";
 import Contacto from "./pages/Contacto";
-import './App.css'
+import Footer from "./components/Footer";
+import "./App.css";
 
 function App() {
   return (
     <>
       <Navbar />
-      <div className="md:mx-42">
-        <div className="w-full bg-white rounded-3xl shadow-lg p-8">
-          <div>
-            <Routes>
-              <Route path="/" element={<Presentacion />} />
-              <Route path="/experiencia" element={<Experiencia />} />
-              <Route path="/contacto" element={<Contacto />} />
-            </Routes>
-          </div>
+      <main className="pt-20">
+        <section id="presentacion">
+          <Presentacion />
+        </section>
 
-        </div>
-      </div>
+        <section id="experiencia">
+          <Experiencia />
+        </section>
+
+        <section id="contacto">
+          <Contacto />
+        </section>
+      </main>
+      <Footer />
     </>
   );
 }
-
 
 export default App;
