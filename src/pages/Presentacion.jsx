@@ -38,17 +38,17 @@ const Presentacion = () => {
                 Hablemos
               </a>
 
-              <a
+              {/* <a
                 href="#experiencia"
                 className="inline-flex items-center justify-center px-8 py-4 font-display font-semibold text-foreground bg-secondary border border-border rounded-full hover:bg-muted transition-all duration-300"
               >
                 Ver proyectos
-              </a>
+              </a> */}
             </div>
           </div>
 
           {/* FOTO */}
-          <div className="flex-shrink-0 opacity-0 animate-fade-up delay-400 mr-24 mb-12">
+          <div className="flex-shrink-0 opacity-0 animate-fade-up delay-400 lg:mr-24 mb-12">
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-110"></div>
 

@@ -40,7 +40,7 @@ const Contacto = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 max-w-5xl mx-auto">
 
           {/* INFO */}
-          <div className="space-y-8">
+          <div className="space-y-8 mr-4">
             <div className="card-glass rounded-2xl p-8">
               <h3 className="font-display text-xl font-bold mb-6">
                 Información de contacto
