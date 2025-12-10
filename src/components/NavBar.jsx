@@ -34,7 +34,7 @@ const Navbar = () => {
           className="font-display text-xl font-bold text-gradient"
           aria-label="Ir al inicio"
         >
-          {"</>"}
+          {"</Jhorman Cortes>"}
         </a>
 
         {/* menu pc */}

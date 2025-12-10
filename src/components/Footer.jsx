@@ -29,7 +29,7 @@ const Footer = () => {
                 <Code2 className="w-6 h-6 text-primary" />
               </div>
               <span className="font-display text-xl font-bold">
-                Dev<span className="text-primary">Folio</span>
+                Jhorman<span className="text-primary">Cortes</span>
               </span>
             </a>
 

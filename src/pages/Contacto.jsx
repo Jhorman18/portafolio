@@ -84,6 +84,13 @@ const Contacto = () => {
                     </a>
                   ))}
                 </div>
+                <a
+                  href="/cv_Jhorman_Cortes.pdf"
+                  download
+                  className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-display font-semibold rounded-xl hover:opacity-90 transition-all duration-300 glow-effect w-full"
+                >
+                  Descargar Hoja de Vida
+                </a>
               </div>
             </div>
           </div>
