@@ -37,16 +37,13 @@ const Pruebas = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Encabezado */}
         <div className="text-center mb-16 opacity-0 animate-fade-up">
-          <p className="font-body text-primary text-sm tracking-widest uppercase mb-4">
-            Sección de pruebas
-          </p>
 
           <h2 className="font-display text-3xl md:text-5xl font-bold">
-            Demos de <span className="text-gradient">APIs</span>
+            <span className="text-gradient">APIs</span>
           </h2>
 
           <p className="font-body text-muted-foreground max-w-2xl mx-auto mt-4">
-            Ejercicios prácticos creados para clase
+            Ejercicios prácticos usados en clase
           </p>
         </div>
 

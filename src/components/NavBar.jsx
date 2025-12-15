@@ -17,7 +17,7 @@ const Navbar = () => {
     { label: "Presentación", href: "#hero" },
     { label: "Experiencia", href: "#experiencia" },
     { label: "Contacto", href: "#contacto" },
-    { label: "Pruebas", href: "/pruebas" }
+    { label: "API R y M", href: "/pruebas" }
   ];
 
   return (
