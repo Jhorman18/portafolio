@@ -1,4 +1,5 @@
 import { Briefcase, Calendar } from "lucide-react";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 import {
   SiReact,
   SiJavascript,
@@ -43,13 +44,15 @@ const technologies = [
 ];
 
 const Experiencia = () => {
+  useScrollReveal();
+
   return (
     <section id="experiencia" className="py-24 lg:py-32 relative ">
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-[radial-gradient(ellipse_at_top_right,_hsl(265_85%_66%_/_0.08),_transparent_60%)]"></div>
 
       <div className="container mx-auto px-6 relative z-10 lg:px-12">
 
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 reveal-on-scroll">
           <p className="font-body text-violet-600 dark:text-violet-400 text-sm tracking-widest uppercase mb-4 font-semibold">
             Trayectoria
           </p>
@@ -64,11 +67,11 @@ const Experiencia = () => {
             {ExperienciaArray.map((exp, i) => (
               <div
                 key={i}
-                className="relative pl-8 border-l-2 border-slate-200 dark:border-slate-800 hover:border-violet-500 transition-colors duration-500 group"
+                className={`relative pl-8 border-l-2 border-slate-200 dark:border-slate-800 hover:border-violet-500 transition-colors duration-500 group reveal-on-scroll stagger-${i + 1}`}
               >
                 <div className="absolute left-0 top-0 w-4 h-4 -translate-x-1/2 rounded-full bg-slate-100 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 group-hover:border-violet-500 group-hover:bg-violet-500 transition-all duration-300 shadow-md shadow-violet-500/50"></div>
 
-                <div className="card-glass rounded-2xl p-6 group-hover:border-violet-400 dark:group-hover:border-violet-500/40 transition-all duration-300 hover:shadow-lg dark:hover:shadow-violet-950/30">
+                <div className="card-glass rounded-2xl p-6 group-hover:border-violet-400 dark:group-hover:border-violet-500/40 transition-all duration-300 hover:shadow-xl dark:hover:shadow-violet-950/30 hover:-translate-y-1">
                   <div className="flex items-center gap-2 text-violet-600 dark:text-violet-400 text-sm font-medium mb-2">
                     <Calendar className="w-4 h-4 text-violet-600 dark:text-violet-400" />
                     <span>{exp.period}</span>
@@ -92,7 +95,7 @@ const Experiencia = () => {
           </div>
 
           {/* TECNOLOGÍAS */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 reveal-on-scroll">
             <div className="card-glass rounded-2xl p-8 border-slate-200 dark:border-slate-800">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
@@ -109,7 +112,7 @@ const Experiencia = () => {
                   return (
                     <div
                       key={i}
-                      className="flex flex-col items-center justify-center p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-violet-400 dark:hover:border-violet-500/50 hover:bg-white dark:hover:bg-slate-900 hover:-translate-y-1 transition-all duration-300 group shadow-sm hover:shadow-xl hover:shadow-violet-500/10 dark:hover:shadow-violet-950/30"
+                      className={`flex flex-col items-center justify-center p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-violet-400 dark:hover:border-violet-500/50 hover:bg-white dark:hover:bg-slate-900 hover:-translate-y-1.5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:shadow-violet-500/15 dark:hover:shadow-violet-950/30 reveal-on-scroll stagger-${(i % 5) + 1}`}
                     >
                       <div className="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-3 group-hover:bg-violet-500/20 group-hover:border-violet-500/40 transition-colors">
                         <Icon className="w-7 h-7 text-violet-600 dark:text-violet-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 group-hover:scale-110 transition-all duration-300" />

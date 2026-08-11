@@ -1,7 +1,10 @@
 import { Mail, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react";
 import { useState } from "react";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const Contacto = () => {
+  useScrollReveal();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,7 +28,7 @@ const Contacto = () => {
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(265_85%_66%_/_0.08),_transparent_60%)]"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 reveal-on-scroll">
           <p className="font-body text-violet-600 dark:text-violet-400 text-sm tracking-widest uppercase mb-4 font-semibold">
             Contacto
           </p>
@@ -40,7 +43,7 @@ const Contacto = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 max-w-5xl mx-auto">
 
           {/* INFO */}
-          <div className="space-y-8 mr-4">
+          <div className="space-y-8 mr-4 reveal-on-scroll stagger-1">
             <div className="card-glass rounded-2xl p-8 border-slate-200 dark:border-slate-800">
               <h3 className="font-display text-xl font-bold mb-6 text-slate-900 dark:text-white">
                 Información de contacto
@@ -96,7 +99,7 @@ const Contacto = () => {
           </div>
 
           {/* FORM */}
-          <div className="card-glass rounded-2xl p-8 border-slate-200 dark:border-slate-800">
+          <div className="card-glass rounded-2xl p-8 border-slate-200 dark:border-slate-800 reveal-on-scroll stagger-2">
             <h3 className="font-display text-xl font-bold mb-6 text-slate-900 dark:text-white">
               Envíame un mensaje
             </h3>

@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/NavBar";
+import ScrollProgress from "./components/ScrollProgress";
+import GlobalFloatingBackground from "./components/GlobalFloatingBackground";
 import Presentacion from "./pages/Presentacion";
 import Experiencia from "./pages/Experiencia";
 import Proyectos from "./pages/Proyectos";
@@ -17,6 +19,8 @@ import "./App.css";
 function App() {
   return (
     <>
+      <GlobalFloatingBackground />
+      <ScrollProgress />
       <Navbar />
 
       <main>

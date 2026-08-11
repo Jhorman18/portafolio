@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 import {
   ExternalLink,
   Github,
@@ -135,6 +136,8 @@ const proyectos = [
 const categories = ["Todos", "Full Stack", "Frontend", "Backend & APIs", "Empresarial"];
 
 const Proyectos = () => {
+  useScrollReveal();
+
   const [activeFilter, setActiveFilter] = useState("Todos");
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -150,7 +153,7 @@ const Proyectos = () => {
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
 
         {/* Encabezado */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 reveal-on-scroll">
           <p className="font-body text-violet-600 dark:text-violet-400 text-sm tracking-widest uppercase mb-4 font-semibold flex items-center justify-center gap-2">
             <Sparkles className="w-4 h-4" /> Portafolio de Desarrollo
           </p>
@@ -185,7 +188,7 @@ const Proyectos = () => {
 
         {/* Grid Bento Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((proyecto) => {
+          {filteredProjects.map((proyecto, idx) => {
             const { Icon } = proyecto;
 
             // Renderizado Especial para el Proyecto Destacado (#1 Bento Card)
@@ -194,7 +197,7 @@ const Proyectos = () => {
                 <div
                   key={proyecto.id}
                   onClick={() => setSelectedProject(proyecto)}
-                  className="md:col-span-2 lg:col-span-2 card-glass rounded-3xl overflow-hidden group border border-slate-200 dark:border-slate-800 hover:border-violet-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-violet-500/15 dark:hover:shadow-violet-950/40 relative flex flex-col justify-between cursor-pointer"
+                  className="md:col-span-2 lg:col-span-2 card-glass rounded-3xl overflow-hidden group border border-slate-200 dark:border-slate-800 hover:border-violet-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-violet-500/15 dark:hover:shadow-violet-950/40 relative flex flex-col justify-between cursor-pointer reveal-on-scroll stagger-1"
                 >
                   {/* Header Banner Destacado */}
                   <div
@@ -267,7 +270,7 @@ const Proyectos = () => {
               <div
                 key={proyecto.id}
                 onClick={() => setSelectedProject(proyecto)}
-                className="card-glass rounded-3xl overflow-hidden group border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-500/50 transition-all duration-300 flex flex-col hover:-translate-y-1.5 hover:shadow-xl dark:hover:shadow-violet-950/30 relative cursor-pointer"
+                className={`card-glass rounded-3xl overflow-hidden group border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-500/50 transition-all duration-300 flex flex-col hover:-translate-y-1.5 hover:shadow-xl dark:hover:shadow-violet-950/30 relative cursor-pointer reveal-on-scroll stagger-${(idx % 3) + 1}`}
               >
                 {/* Header de tarjeta con gradiente */}
                 <div

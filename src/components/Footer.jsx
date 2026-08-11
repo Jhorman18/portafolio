@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Instagram, Code2, Heart, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Twitter, Instagram, Code2, ArrowUp } from "lucide-react";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -94,13 +94,9 @@ const Footer = () => {
 
         <div className="h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-800 to-transparent my-8" />
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-slate-600 dark:text-slate-400">
+        <div className="text-center">
+          <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
             © {year} Jhorman Cortes. Todos los derechos reservados.
-          </p>
-
-          <p className="text-sm text-slate-600 dark:text-slate-400 inline-flex items-center gap-1">
-            Hecho con <Heart className="w-4 h-4 text-violet-600 dark:text-violet-400 animate-pulse fill-violet-400/20" /> y mucho café
           </p>
         </div>
       </div>
