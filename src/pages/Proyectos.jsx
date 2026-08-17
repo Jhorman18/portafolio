@@ -1,134 +1,125 @@
 import { useState } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import {
-  ExternalLink,
-  Github,
   Users,
   FolderOpen,
   Mail,
   Building2,
   Lightbulb,
-  Sparkles,
   Lock,
   ArrowUpRight,
   Filter,
+  CheckCircle2,
+  Sparkles,
 } from "lucide-react";
 import ProyectoModal from "../components/ProyectoModal";
+import SpotlightCard from "../components/SpotlightCard";
+import TextScramble from "../components/TextScramble";
 
 const proyectos = [
   {
     id: "01",
     title: "HireFlow",
-    subtitle: "Plataforma ATS & Selección de Personal",
+    subtitle: "Plataforma SaaS de Selección & Reclutamiento ATS",
     description:
-      "Plataforma empresarial de gestión de procesos de selección y contratación. Permite administrar postulantes, vacantes activas y evaluar cada etapa del reclutamiento con métricas en tiempo real.",
+      "Sistema integral para la gestión ágil de procesos de contratación empresarial. Centraliza postulantes, vacantes abiertas, trazabilidad por fases de reclutamiento y generación de reportes analíticos.",
     category: "Full Stack",
     typeBadge: "Plataforma SaaS",
-    tags: ["React", "Node.js", "Express", "MySQL", "Prisma ORM"],
+    tags: ["React 19", "Node.js", "Express", "MySQL", "Prisma ORM", "Tailwind CSS"],
     github: null,
     demo: null,
     Icon: Users,
-    gradient: "from-violet-600/30 via-purple-600/20 to-indigo-600/10",
     featured: true,
-    status: "Sistema Activo",
-    images: [],
+    status: "Sistema en Producción",
     features: [
-      "Pipeline visual interactivo de etapas de selección",
-      "Filtros avanzados de postulantes por competencias y estado",
-      "Generación de reportes de gestión de vacantes",
-      "Base de datos relacional con Prisma ORM y MySQL",
+      "Pipeline interactivo tipo Kanban para seguimiento de candidatos",
+      "Filtros avanzados por competencias laborales, salarios y estados",
+      "Modelado de datos relacional y seguro con Prisma ORM y MySQL",
+      "Panel de métricas y exportación de reportes de contratación",
     ],
   },
   {
     id: "02",
-    title: "File Manager",
-    subtitle: "Gestor Documental Seguro con Roles",
+    title: "File Manager Enterprise",
+    subtitle: "Gestor Documental Seguro con Control de Roles",
     description:
-      "Sistema de gestión de archivos empresarial con autenticación JWT, subida/descarga controlada, permisos granulares por rol y base de datos relacional optimizada.",
+      "Plataforma empresarial de almacenamiento y transferencia segura de archivos con autenticación robusta mediante JSON Web Tokens (JWT) y auditoría de operaciones por usuario.",
     category: "Empresarial",
     typeBadge: "Herramienta Empresarial",
-    tags: ["Node.js", "Express", "Prisma ORM", "MySQL", "JWT"],
+    tags: ["Node.js", "Express", "Prisma ORM", "MySQL", "JWT Auth"],
     github: null,
     demo: null,
     Icon: FolderOpen,
-    gradient: "from-indigo-600/30 via-violet-600/20 to-purple-600/10",
     featured: false,
-    status: "Empresarial",
-    images: [],
+    status: "Enterprise Interno",
     features: [
-      "Autenticación segura basada en JSON Web Tokens (JWT)",
-      "Control de acceso y permisos según el rol asignado",
-      "Subida y descarga eficiente de archivos empresariales",
-      "Auditoría y trazabilidad de operaciones por usuario",
+      "Autenticación segura y cifrado de credenciales con JWT",
+      "Permisos granulares según rol administrativo o de consulta",
+      "Subida, organización y descarga de archivos de gran volumen",
+      "Trazabilidad de descargas y auditoría de seguridad",
     ],
   },
   {
     id: "03",
-    title: "EvaMailer",
-    subtitle: "Microservicio de Correos & Notificaciones",
+    title: "EvaMailer Microservice",
+    subtitle: "Microservicio REST de Mensajería & Notificaciones",
     description:
-      "Servicio automatizado de envío de correos masivos con plantillas HTML dinámicas, cola de distribución y seguimiento en tiempo real de entregabilidad.",
+      "Servicio backend automatizado para despacho masivo de correos electrónicos con plantillas HTML reactivas, colas asíncronas y verificación de entregabilidad en tiempo real.",
     category: "Backend & APIs",
     typeBadge: "Microservicio API",
-    tags: ["Node.js", "Express", "Nodemailer", "MySQL"],
+    tags: ["Node.js", "Express", "Nodemailer", "MySQL", "HTML Templates"],
     github: null,
     demo: null,
     Icon: Mail,
-    gradient: "from-purple-600/30 via-indigo-600/20 to-violet-600/10",
     featured: false,
-    status: "Servicio API",
-    images: [],
+    status: "Microservicio Activo",
     features: [
-      "Microservicio REST modular y reutilizable para cualquier app",
-      "Renderizado dinámico de plantillas HTML personalizadas",
-      "Gestión de colas de envío masivo con reporte de estados",
-      "Integración nativa con proveedores SMTP enterprise",
+      "Arquitectura modular desacoplada consumible vía API REST",
+      "Generación dinámica de plantillas HTML personalizadas",
+      "Manejo de colas y reportes automáticos de estado de envío",
+      "Integración nativa con servidores SMTP empresariales",
     ],
   },
   {
     id: "04",
-    title: "Proyección Laboral",
-    subtitle: "Portal Web Institucional & Corporativo",
+    title: "Proyección Laboral S.A.S",
+    subtitle: "Portal Web Institucional Corporativo",
     description:
-      "Sitio web institucional de Proyección Laboral S.A.S. Presentación de servicios corporativos, historia organizacional y canales de atención interactivos.",
+      "Sitio web oficial de la compañía Proyección Laboral S.A.S. Presentación de servicios de recursos humanos, gestión comercial y canales de atención interactivos.",
     category: "Frontend",
     typeBadge: "Web Corporativa",
-    tags: ["React", "Tailwind CSS", "Vite"],
+    tags: ["React", "Tailwind CSS", "Vite", "Vercel Deploy"],
     github: null,
     demo: "https://portafolio-ten-zeta.vercel.app/",
     Icon: Building2,
-    gradient: "from-violet-500/30 via-indigo-500/20 to-purple-500/10",
     featured: false,
     status: "En Vivo",
-    images: [],
     features: [
-      "Diseño web responsive ultra fluido optimizado para móvil y PC",
-      "Arquitectura basada en componentes reutilizables con React",
-      "Estilos modernos y rápidos construidos con Tailwind CSS",
-      "Despliegue automatizado y optimizado en Vercel",
+      "Diseño web responsive optimizado para móvil, tablet y escritorio",
+      "Arquitectura de componentes ligeros con carga ultra rápida",
+      "Paleta y tipografía adaptadas a la identidad de marca",
+      "Despliegue automatizado y CDN global en Vercel",
     ],
   },
   {
     id: "05",
-    title: "Optilux",
-    subtitle: "Software de Gestión Comercial para Ópticas",
+    title: "Optilux Manager",
+    subtitle: "Software Integral de Gestión para Ópticas",
     description:
-      "Aplicación web integral para ópticas. Gestión de catálogo de productos, agendamiento de citas especializadas y seguimiento detallado de órdenes.",
+      "Aplicación web a medida para ópticas y consultorios. Catálogo de productos con filtros técnicos, agendamiento de exámenes visuales y seguimiento de órdenes de laboratorio.",
     category: "Full Stack",
     typeBadge: "Aplicación Web",
     tags: ["React", "Node.js", "Express", "MySQL", "Tailwind CSS"],
     github: null,
     demo: null,
     Icon: Lightbulb,
-    gradient: "from-indigo-500/30 via-purple-500/20 to-violet-500/10",
     featured: false,
     status: "Aplicación Web",
-    images: [],
     features: [
-      "Módulo de agendamiento y control de citas oftalmológicas",
-      "Catálogo interactivo con filtros de armazones y cristales",
-      "Seguimiento de pedidos de laboratorio en tiempo real",
-      "Interfaz adaptativa diseñada para fácil navegación operativa",
+      "Módulo de citas oftalmológicas y registro de pacientes",
+      "Catálogo interactivo con filtrado de cristales y monturas",
+      "Control de estados para pedidos en laboratorio técnico",
+      "Panel de administración adaptado a operadores comerciales",
     ],
   },
 ];
@@ -147,38 +138,35 @@ const Proyectos = () => {
       : proyectos.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="proyectos" className="py-24 lg:py-32 relative">
-      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(265_85%_66%_/_0.08),_transparent_60%)] pointer-events-none" />
-
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+    <section id="proyectos" className="py-20 md:py-28 relative scroll-mt-24">
+      <div className="container mx-auto px-4 sm:px-6 md:px-10 relative z-10">
 
         {/* Encabezado */}
-        <div className="text-center mb-12 reveal-on-scroll">
-          <p className="font-body text-violet-600 dark:text-violet-400 text-sm tracking-widest uppercase mb-4 font-semibold flex items-center justify-center gap-2">
-            <Sparkles className="w-4 h-4" /> Portafolio de Desarrollo
-          </p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            Proyectos <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 dark:from-violet-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">destacados</span>
+        <div className="text-center md:text-left mb-12 reveal-on-scroll">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-[#121420] border border-slate-200 dark:border-[#1F2438] text-xs font-mono text-slate-600 dark:text-slate-400 mb-3">
+            <span>[ 03 // PROYECTOS_DESTACADOS ]</span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight [text-wrap:balance]">
+            Trabajos & <span className="text-[#1A2FFB] dark:text-[#3B54FF]">Soluciones Reales</span>
           </h2>
-          <p className="font-body text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm md:text-base">
-            Soluciones web reales diseñadas con arquitectura escalable, interfaces intuitivas y código limpio. <br />
-            <span className="text-xs text-violet-600 dark:text-violet-400 font-semibold">💡 Haz clic en cualquier proyecto para ver sus detalles en pantalla completa.</span>
+          <p className="font-body text-slate-600 dark:text-slate-400 text-sm md:text-base max-w-2xl mt-3 [text-wrap:pretty]">
+            Una selección de sistemas empresariales, plataformas SaaS y aplicaciones web desarrolladas con estándares modernos de ingeniería.
           </p>
         </div>
 
-        {/* Filtros Interactivos */}
-        <div className="flex flex-wrap justify-center items-center gap-2 md:gap-3 mb-16">
-          <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-400 mr-2 font-medium">
-            <Filter className="w-3.5 h-3.5" /> Filtrar:
+        {/* Barra de Filtros Interactivos */}
+        <div className="flex flex-wrap items-center gap-2 mb-12 reveal-on-scroll">
+          <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 mr-2" aria-hidden="true">
+            <Filter className="w-3.5 h-3.5 text-[#1A2FFB]" /> FILTRO:
           </div>
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
-              className={`px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${
+              className={`px-4 py-2 rounded-full text-xs font-mono transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none ${
                 activeFilter === cat
-                  ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-600/30 scale-105"
-                  : "bg-slate-100 dark:bg-slate-900/80 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-500/50 hover:text-violet-600 dark:hover:text-white"
+                  ? "bg-[#1A2FFB] text-white font-bold shadow-sm shadow-blue-600/20"
+                  : "bg-slate-100 dark:bg-[#11131E] text-slate-600 dark:text-slate-400 border border-slate-200/80 dark:border-[#1E2337] hover:border-slate-300 dark:hover:border-[#2D3450] hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               {cat}
@@ -186,63 +174,81 @@ const Proyectos = () => {
           ))}
         </div>
 
-        {/* Grid Bento Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* BENTO GRID DE PROYECTOS CON SPOTLIGHT CARD GLOW */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredProjects.map((proyecto, idx) => {
             const { Icon } = proyecto;
 
-            // Renderizado Especial para el Proyecto Destacado (#1 Bento Card)
+            // Renderizado Especial: Hero Bento Card (#1 HireFlow)
             if (proyecto.featured && activeFilter === "Todos") {
               return (
-                <div
+                <SpotlightCard
                   key={proyecto.id}
+                  role="button"
+                  tabIndex={0}
+                  aria-haspopup="dialog"
+                  aria-label={`Ver detalles del proyecto ${proyecto.title}`}
                   onClick={() => setSelectedProject(proyecto)}
-                  className="md:col-span-2 lg:col-span-2 card-glass rounded-3xl overflow-hidden group border border-slate-200 dark:border-slate-800 hover:border-violet-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-violet-500/15 dark:hover:shadow-violet-950/40 relative flex flex-col justify-between cursor-pointer reveal-on-scroll stagger-1"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedProject(proyecto);
+                    }
+                  }}
+                  className="md:col-span-2 lg:col-span-2 card-clean card-clean-hover rounded-[28px] overflow-hidden flex flex-col justify-between cursor-pointer group relative reveal-on-scroll stagger-1 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none"
                 >
-                  {/* Header Banner Destacado */}
-                  <div
-                    className={`h-48 md:h-56 bg-gradient-to-br ${proyecto.gradient} p-8 relative flex items-center justify-between overflow-hidden`}
-                  >
-                    {/* Efecto de barrido de luz */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                    
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:2rem_2rem]" />
-                    
-                    <div className="relative z-10 flex items-center gap-4">
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200 dark:border-slate-700/60 flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        <Icon className="w-8 h-8 md:w-10 md:h-10 text-violet-600 dark:text-violet-400" />
+                  {/* Cabecera Técnica de Simulación */}
+                  <div className="p-6 md:p-8 bg-slate-50/80 dark:bg-[#0E1019] border-b border-slate-200/80 dark:border-[#1A1D2D] flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-[#1A2FFB]/10 dark:bg-[#1A2FFB]/20 border border-[#1A2FFB]/30 flex items-center justify-center text-[#1A2FFB]" aria-hidden="true">
+                        <Icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/20 text-violet-700 dark:text-violet-300 border border-violet-500/30 backdrop-blur-sm mb-2">
-                          <Sparkles className="w-3.5 h-3.5" /> Proyecto Destacado
-                        </span>
-                        <h3 className="font-display text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">
-                          {proyecto.title}
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-xs font-semibold text-[#1A2FFB] dark:text-[#3B54FF]">
+                            PROYECTO_{proyecto.id}
+                          </span>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
+                            ● {proyecto.status}
+                          </span>
+                        </div>
+                        <h3 className="font-display text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white mt-0.5">
+                          <TextScramble text={proyecto.title} />
                         </h3>
                       </div>
                     </div>
 
-                    <span className="font-mono text-2xl font-black text-violet-500/30 dark:text-violet-400/20 hidden sm:block">
-                      {proyecto.id}
-                    </span>
+                    <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#161928] border border-slate-200 dark:border-[#22273D] text-xs font-mono text-slate-500" aria-hidden="true">
+                      <Sparkles className="w-3.5 h-3.5 text-[#1A2FFB]" /> Destacado
+                    </div>
                   </div>
 
-                  {/* Cuerpo del Destacado */}
-                  <div className="p-8 flex flex-col flex-1 justify-between">
+                  {/* Cuerpo de la Tarjeta Destacada */}
+                  <div className="p-6 md:p-8 flex flex-col flex-1 justify-between">
                     <div>
-                      <p className="text-xs font-bold text-violet-600 dark:text-violet-400 uppercase tracking-widest mb-2">
+                      <p className="font-mono text-xs text-slate-500 uppercase tracking-widest mb-2">
                         {proyecto.subtitle}
                       </p>
-                      <p className="font-body text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-6">
+                      <p className="font-body text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-6">
                         {proyecto.description}
                       </p>
+
+                      {/* Lista de Capacidades Clave */}
+                      <div className="grid sm:grid-cols-2 gap-2.5 mb-6">
+                        {proyecto.features.map((feat, fIdx) => (
+                          <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-400 font-body">
+                            <CheckCircle2 className="w-4 h-4 text-[#1A2FFB] shrink-0 mt-0.5" aria-hidden="true" />
+                            <span>{feat}</span>
+                          </div>
+                        ))}
+                      </div>
 
                       {/* Tech Tags */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         {proyecto.tags.map((tag, j) => (
                           <span
                             key={j}
-                            className="px-3.5 py-1.5 text-xs font-semibold bg-slate-100 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 rounded-full border border-slate-200 dark:border-slate-800 group-hover:border-violet-500/30 transition-colors"
+                            className="px-3 py-1 text-xs font-mono bg-slate-100 dark:bg-[#151826] text-slate-700 dark:text-slate-300 rounded-full border border-slate-200/80 dark:border-[#1E2337]"
                           >
                             {tag}
                           </span>
@@ -251,68 +257,74 @@ const Proyectos = () => {
                     </div>
 
                     {/* Footer de la tarjeta */}
-                    <div className="flex items-center justify-between pt-6 border-t border-slate-200 dark:border-slate-800/80">
-                      <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
-                        <Lock className="w-3.5 h-3.5 text-violet-500" /> Código Privado (Enterprise)
+                    <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-[#181B2B]">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500">
+                        <Lock className="w-3.5 h-3.5 text-slate-400" aria-hidden="true" /> Código Privado (Empresarial)
                       </span>
 
-                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                        {proyecto.status}
+                      <span className="inline-flex items-center gap-1 text-xs font-display font-bold uppercase tracking-wider text-[#1A2FFB] group-hover:translate-x-1 transition-transform">
+                        Ver Detalles <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                       </span>
                     </div>
                   </div>
-                </div>
+                </SpotlightCard>
               );
             }
 
-            // Tarjetas Secundarias
+            // Tarjetas Secundarias del Bento Grid
             return (
-              <div
+              <SpotlightCard
                 key={proyecto.id}
+                role="button"
+                tabIndex={0}
+                aria-haspopup="dialog"
+                aria-label={`Ver detalles del proyecto ${proyecto.title}`}
                 onClick={() => setSelectedProject(proyecto)}
-                className={`card-glass rounded-3xl overflow-hidden group border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-500/50 transition-all duration-300 flex flex-col hover:-translate-y-1.5 hover:shadow-xl dark:hover:shadow-violet-950/30 relative cursor-pointer reveal-on-scroll stagger-${(idx % 3) + 1}`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedProject(proyecto);
+                  }
+                }}
+                className={`card-clean card-clean-hover rounded-[24px] overflow-hidden flex flex-col justify-between cursor-pointer group relative reveal-on-scroll stagger-${(idx % 3) + 1} focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none`}
               >
-                {/* Header de tarjeta con gradiente */}
-                <div
-                  className={`h-40 bg-gradient-to-br ${proyecto.gradient} p-6 relative flex items-center justify-between overflow-hidden`}
-                >
-                  {/* Barrido de luz */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                  
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:2rem_2rem]" />
-                  
-                  <div className="relative z-10 w-14 h-14 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200 dark:border-slate-700/60 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                    <Icon className="w-7 h-7 text-violet-600 dark:text-violet-400" />
+                {/* Header de la tarjeta */}
+                <div className="p-6 bg-slate-50/60 dark:bg-[#0E1019] border-b border-slate-100 dark:border-[#1A1D2D] flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-[#161928] border border-slate-200 dark:border-[#22273D] flex items-center justify-center text-slate-700 dark:text-slate-300 group-hover:text-[#1A2FFB] transition-colors" aria-hidden="true">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="font-mono text-[10px] text-slate-400 block">
+                        PROYECTO_{proyecto.id}
+                      </span>
+                      <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">
+                        {proyecto.typeBadge}
+                      </span>
+                    </div>
                   </div>
 
-                  <span className="font-mono text-xl font-bold text-violet-500/40 dark:text-violet-400/30 relative z-10">
-                    {proyecto.id}
+                  <span className="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#151826] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-[#1E2337]">
+                    {proyecto.category}
                   </span>
                 </div>
 
                 {/* Contenido */}
                 <div className="p-6 flex flex-col flex-1 justify-between">
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-violet-600 dark:text-violet-400">
-                        {proyecto.typeBadge}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-300 transition-colors">
-                      {proyecto.title}
+                    <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#1A2FFB] transition-colors">
+                      <TextScramble text={proyecto.title} />
                     </h3>
-
-                    <p className="font-body text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+                    <p className="font-body text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                       {proyecto.description}
                     </p>
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 mb-6">
-                      {proyecto.tags.map((tag, j) => (
+                      {proyecto.tags.slice(0, 4).map((tag, j) => (
                         <span
                           key={j}
-                          className="px-3 py-1 text-[11px] font-medium bg-slate-100 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 rounded-full border border-slate-200 dark:border-slate-800"
+                          className="px-2.5 py-0.5 text-[11px] font-mono bg-slate-100 dark:bg-[#141724] text-slate-600 dark:text-slate-400 rounded-full border border-slate-200/60 dark:border-[#1C2032]"
                         >
                           {tag}
                         </span>
@@ -320,50 +332,37 @@ const Proyectos = () => {
                     </div>
                   </div>
 
-                  {/* Links / Estado */}
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
-                    {proyecto.github ? (
-                      <a
-                        href={proyecto.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
-                      >
-                        <Github className="w-3.5 h-3.5" />
-                        Código
-                      </a>
-                    ) : (
-                      <span className="flex items-center gap-1.5 text-xs font-medium text-slate-400 dark:text-slate-500 cursor-default select-none">
-                        <Lock className="w-3.5 h-3.5 text-violet-500/70" />
-                        Privado
-                      </span>
-                    )}
-
+                  {/* Footer */}
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-[#181B2B]">
                     {proyecto.demo ? (
                       <a
                         href={proyecto.demo}
-                        target={proyecto.demo.startsWith("http") ? "_blank" : "_self"}
+                        target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 text-xs font-bold text-violet-600 dark:text-violet-400 hover:text-violet-500 dark:hover:text-violet-300 transition-colors"
+                        className="inline-flex items-center gap-1 text-xs font-mono font-bold text-[#1A2FFB] hover:underline focus-visible:ring-1 focus-visible:ring-[#1A2FFB] rounded"
                       >
-                        Ver Demo <ArrowUpRight className="w-3.5 h-3.5" />
+                        Demo en Vivo <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
                       </a>
                     ) : (
-                      <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-900 px-2.5 py-0.5 rounded-full border border-slate-200 dark:border-slate-800">
-                        {proyecto.status}
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
+                        <Lock className="w-3 h-3 text-slate-400" aria-hidden="true" /> {proyecto.status}
                       </span>
                     )}
+
+                    <span className="text-xs font-display font-semibold uppercase tracking-wider text-slate-500 group-hover:text-[#1A2FFB] transition-colors flex items-center gap-1">
+                      Detalles <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                    </span>
                   </div>
                 </div>
-              </div>
+              </SpotlightCard>
             );
           })}
         </div>
+
       </div>
 
-      {/* Renderizado del Modal Interactivo al seleccionar un proyecto */}
+      {/* MODAL INTERACTIVO ACCESIBLE */}
       {selectedProject && (
         <ProyectoModal
           proyecto={selectedProject}

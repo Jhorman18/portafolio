@@ -3,59 +3,56 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import ScrollProgress from "./components/ScrollProgress";
 import GlobalFloatingBackground from "./components/GlobalFloatingBackground";
+import ScrollSectionStack from "./components/ScrollSectionStack";
+import TechMarquee from "./components/TechMarquee";
 import Presentacion from "./pages/Presentacion";
 import Experiencia from "./pages/Experiencia";
 import Proyectos from "./pages/Proyectos";
 import Contacto from "./pages/Contacto";
-
-// import Pruebas from "./pages/Pruebas";
-// import CharactersList from "./features/rickmorty/CharactersList";
-// import CharacterById from "./features/rickmorty/CharacterById";
-// import EpisodeById from "./features/rickmorty/EpisodeById";
-
 import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
   return (
-    <>
+    <div className="relative min-h-screen bg-slate-50 dark:bg-[#090A0F] text-slate-900 dark:text-slate-100 overflow-x-hidden">
       <GlobalFloatingBackground />
       <ScrollProgress />
       <Navbar />
 
-      <main>
+      <main className="relative z-10 px-2 sm:px-4 md:px-6 max-w-[1550px] mx-auto pt-2">
         <Routes>
           <Route
             path="/"
             element={
-              <>
-                <section id="presentacion">
+              <ScrollSectionStack>
+                {/* Capa 1: Hero & Marquee */}
+                <section id="hero" className="w-full">
                   <Presentacion />
+                  <TechMarquee />
                 </section>
 
-                <section id="experiencia">
+                {/* Capa 2: Experiencia & Stack */}
+                <section id="experiencia" className="w-full">
                   <Experiencia />
                 </section>
 
-                <section id="proyectos">
+                {/* Capa 3: Proyectos */}
+                <section id="proyectos" className="w-full">
                   <Proyectos />
                 </section>
 
-                <section id="contacto">
+                {/* Capa 4: Contacto */}
+                <section id="contacto" className="w-full">
                   <Contacto />
                 </section>
-              </>
+              </ScrollSectionStack>
             }
           />
-
-          {/* <Route path="/pruebas" element={<Pruebas />} />
-          <Route path="/pruebas/personajes" element={<CharactersList />} />
-          <Route path="/pruebas/personaje" element={<CharacterById />} />
-          <Route path="/pruebas/episodio" element={<EpisodeById />} /> */}
         </Routes>
       </main>
+
       <Footer />
-    </>
+    </div>
   );
 }
 

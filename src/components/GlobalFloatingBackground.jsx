@@ -53,10 +53,10 @@ const GlobalFloatingBackground = () => {
     const width = window.innerWidth || 1200;
     const height = window.innerHeight || 800;
 
-    // Inicializar 20 partículas / íconos con posición y velocidad pausada por toda la ventana
+    // Inicializar 20 partículas con velocidad pausada
     const particles = iconTypes.map(() => {
-      const vxBase = (Math.random() - 0.5) * 0.7 || 0.3; // Velocidad pausada de vagabundeo X
-      const vyBase = (Math.random() - 0.5) * 0.7 || 0.3; // Velocidad pausada de vagabundeo Y
+      const vxBase = (Math.random() - 0.5) * 0.4 || 0.2;
+      const vyBase = (Math.random() - 0.5) * 0.4 || 0.2;
 
       return {
         x: Math.random() * width,
@@ -66,7 +66,7 @@ const GlobalFloatingBackground = () => {
         vxBase,
         vyBase,
         rotation: Math.random() * 360,
-        vr: (Math.random() - 0.5) * 0.8, // Rotación suave
+        vr: (Math.random() - 0.5) * 0.5,
       };
     });
 
@@ -102,54 +102,47 @@ const GlobalFloatingBackground = () => {
 
     let animationFrameId;
 
-    // Bucle Físico a 60 FPS
     const updatePhysics = () => {
       const curWidth = window.innerWidth;
       const curHeight = window.innerHeight;
 
       particles.forEach((p, i) => {
-        // 1. Calcular distancia con el cursor para colisión / empuje
+        // Colisión / empuje con el cursor
         const dx = p.x - mouseX;
         const dy = p.y - mouseY;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const pushRadius = 170;
+        const pushRadius = 150;
 
         if (dist < pushRadius && dist > 0) {
-          // Lanzar el ícono volando en la dirección del empuje
           const overlap = (pushRadius - dist) / pushRadius;
-          const force = overlap * 16;
+          const force = overlap * 12;
           const angle = Math.atan2(dy, dx);
 
-          p.vx += Math.cos(angle) * force + mouseSpeedX * 0.2;
-          p.vy += Math.sin(angle) * force + mouseSpeedY * 0.2;
-          p.vr += (Math.random() - 0.5) * 4; // Giro dinámico al ser empujado
+          p.vx += Math.cos(angle) * force + mouseSpeedX * 0.15;
+          p.vy += Math.sin(angle) * force + mouseSpeedY * 0.15;
+          p.vr += (Math.random() - 0.5) * 3;
         }
 
-        // 2. Mover la posición del ícono libremente
         p.x += p.vx;
         p.y += p.vy;
         p.rotation += p.vr;
 
-        // 3. Fricción y retorno suave a la velocidad pausada continua de viaje
-        p.vx = p.vx * 0.95 + p.vxBase * 0.05;
-        p.vy = p.vy * 0.95 + p.vyBase * 0.05;
-        p.vr *= 0.97;
+        p.vx = p.vx * 0.96 + p.vxBase * 0.04;
+        p.vy = p.vy * 0.96 + p.vyBase * 0.04;
+        p.vr *= 0.98;
 
-        // 4. Reaparición al cruzar los límites de la pantalla (Paseo constante por toda la web)
-        const margin = 60;
+        const margin = 50;
         if (p.x < -margin) p.x = curWidth + margin;
         if (p.x > curWidth + margin) p.x = -margin;
         if (p.y < -margin) p.y = curHeight + margin;
         if (p.y > curHeight + margin) p.y = -margin;
 
-        // 5. Aplicar posición física directamente al nodo DOM
         const dom = domRefs.current[i];
         if (dom) {
           dom.style.transform = `translate3d(${p.x}px, ${p.y}px, 0) rotate(${p.rotation}deg)`;
         }
       });
 
-      // Reducir la velocidad del mouse suavemente
       mouseSpeedX *= 0.8;
       mouseSpeedY *= 0.8;
 
@@ -168,17 +161,17 @@ const GlobalFloatingBackground = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 pointer-events-none overflow-hidden z-[5] select-none"
+      className="fixed inset-0 pointer-events-none overflow-hidden z-[4] select-none"
     >
       {iconTypes.map((IconComponent, index) => (
         <div
           key={index}
           ref={(el) => (domRefs.current[index] = el)}
-          className="absolute top-0 left-0 will-change-transform opacity-40 hover:opacity-100 transition-opacity duration-300"
+          className="absolute top-0 left-0 will-change-transform opacity-15 dark:opacity-20 hover:opacity-60 transition-opacity duration-300"
         >
           <IconComponent
-            size={32}
-            className="text-slate-500 dark:text-slate-400"
+            size={26}
+            className="text-slate-400 dark:text-slate-600"
           />
         </div>
       ))}

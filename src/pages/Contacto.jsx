@@ -1,6 +1,8 @@
-import { Mail, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react";
 import { useState } from "react";
+import { Mail, MapPin, Send, Github, Linkedin, Copy, Check, Download } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import SpotlightCard from "../components/SpotlightCard";
+import { useMagnetic } from "../hooks/useMagnetic";
 
 const Contacto = () => {
   useScrollReveal();
@@ -10,158 +12,246 @@ const Contacto = () => {
     email: "",
     message: "",
   });
+  const [copied, setCopied] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sentSuccess, setSentSuccess] = useState(false);
+
+  const cvBtnRef = useMagnetic(0.25);
+  const submitBtnRef = useMagnetic(0.2);
+
+  const email = "jhormanc150@gmail.com";
+
+  const handleCopyEmail = () => {
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(email).catch(() => {
+        const textArea = document.createElement("textarea");
+        textArea.value = email;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      });
+    } else {
+      const textArea = document.createElement("textarea");
+      textArea.value = email;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Mensaje enviado. ¡Te responderé pronto!");
-    setFormData({ name: "", email: "", message: "" });
+    setIsSending(true);
+    
+    // Simulación de envío fluido con feedback
+    setTimeout(() => {
+      setIsSending(false);
+      setSentSuccess(true);
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setSentSuccess(false), 4000);
+    }, 800);
   };
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/Jhorman18", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/jhorman-steven-cortes-lasso/", label: "LinkedIn" },
   ];
 
   return (
-    <section id="contacto" className="py-24 lg:py-32 relative">
-      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(265_85%_66%_/_0.08),_transparent_60%)]"></div>
+    <section id="contacto" className="py-20 md:py-28 relative scroll-mt-24">
+      <div className="container mx-auto px-4 sm:px-6 md:px-10 relative z-10">
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16 reveal-on-scroll">
-          <p className="font-body text-violet-600 dark:text-violet-400 text-sm tracking-widest uppercase mb-4 font-semibold">
-            Contacto
-          </p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
-            Trabajemos <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 dark:from-violet-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">juntos</span>
+        {/* Encabezado */}
+        <div className="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-[#121420] border border-slate-200 dark:border-[#1F2438] text-xs font-mono text-slate-600 dark:text-slate-400 mb-3">
+            <span>[ 04 // INICIAR_CONVERSACIÓN ]</span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight [text-wrap:balance]">
+            ¿Tienes un proyecto? <span className="text-[#1A2FFB] dark:text-[#3B54FF]">Hablemos</span>
           </h2>
-          <p className="font-body text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-            ¿Tienes un proyecto en mente? Me encantaría escucharte.
+          <p className="font-body text-slate-600 dark:text-slate-400 text-sm md:text-base mt-3 [text-wrap:pretty]">
+            Disponible para oportunidades laborales, desarrollo de aplicaciones a medida o consultoría tecnológica.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 max-w-5xl mx-auto">
 
-          {/* INFO */}
-          <div className="space-y-8 mr-4 reveal-on-scroll stagger-1">
-            <div className="card-glass rounded-2xl p-8 border-slate-200 dark:border-slate-800">
-              <h3 className="font-display text-xl font-bold mb-6 text-slate-900 dark:text-white">
-                Información de contacto
+          {/* COLUMNA IZQUIERDA: INFORMACIÓN DIRECTA CON SPOTLIGHT CARD (5 COLS) */}
+          <div className="lg:col-span-5 space-y-6 reveal-on-scroll stagger-1">
+            <SpotlightCard className="card-clean rounded-[24px] p-6 sm:p-8 space-y-6">
+              
+              <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
+                Canales Directos
               </h3>
 
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-violet-600 dark:text-violet-400" />
+              {/* Email con opción de copiar */}
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#141724] border border-slate-200/80 dark:border-[#1E2337] flex items-center justify-between gap-3 group">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#1A2FFB]/10 flex items-center justify-center text-[#1A2FFB] shrink-0" aria-hidden="true">
+                    <Mail className="w-5 h-5" />
                   </div>
-                  <div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Email</p>
-                    <p className="text-slate-800 dark:text-slate-200 font-medium">jhormanc150@gmail.com</p>
+                  <div className="min-w-0">
+                    <p className="font-mono text-[10px] text-slate-400">CORREO ELECTRÓNICO</p>
+                    <a
+                      href={`mailto:${email}`}
+                      className="font-body text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-[#1A2FFB] dark:hover:text-[#3B54FF] truncate block transition-colors focus-visible:ring-1 focus-visible:ring-[#1A2FFB] rounded"
+                    >
+                      {email}
+                    </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-violet-600 dark:text-violet-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Ubicación</p>
-                    <p className="text-slate-800 dark:text-slate-200 font-medium">Bogotá, Colombia</p>
-                  </div>
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="p-2 rounded-lg bg-white dark:bg-[#1C2032] border border-slate-200 dark:border-[#282F48] text-slate-500 hover:text-[#1A2FFB] transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none"
+                  aria-label="Copiar email de contacto"
+                  title="Copiar email al portapapeles"
+                >
+                  {copied ? <Check className="w-4 h-4 text-emerald-500" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
+                </button>
+              </div>
+
+              {/* Ubicación */}
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#141724] border border-slate-200/80 dark:border-[#1E2337] flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#1A2FFB]/10 flex items-center justify-center text-[#1A2FFB] shrink-0" aria-hidden="true">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="font-mono text-[10px] text-slate-400">UBICACIÓN ACTUAL</p>
+                  <p className="font-body text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
+                    Bogotá, Colombia (GMT-5)
+                  </p>
                 </div>
               </div>
 
-              <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800">
-                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
-                  Sígueme en redes
+              {/* Redes Sociales */}
+              <div>
+                <p className="font-mono text-[10px] text-slate-400 uppercase tracking-widest mb-3">
+                  Perfiles Profesionales
                 </p>
-                <div className="flex gap-4">
+                <div className="flex gap-3">
                   {socialLinks.map((s, i) => (
                     <a
                       key={i}
                       href={s.href}
-                      aria-label={s.label}
-                      className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 hover:border-violet-400 dark:hover:border-violet-500/50 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-all duration-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#141724] border border-slate-200/80 dark:border-[#1E2337] hover:border-[#1A2FFB] text-slate-700 dark:text-slate-300 hover:text-[#1A2FFB] dark:hover:text-white transition-all flex items-center gap-2 text-xs font-mono focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none"
+                      aria-label={`Visitar perfil de ${s.label}`}
                     >
-                      <s.icon className="w-5 h-5" />
+                      <s.icon className="w-4 h-4" aria-hidden="true" />
+                      <span>{s.label}</span>
                     </a>
                   ))}
                 </div>
+              </div>
+
+              {/* Descargar CV Magnético */}
+              <div ref={cvBtnRef} className="pt-2">
                 <a
                   href="/cv_Jhorman_Cortes.pdf"
                   download
-                  className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-display font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-violet-600/30 w-full hover:scale-[1.02]"
+                  className="w-full h-12 rounded-full bg-slate-900 dark:bg-[#1C2032] hover:bg-[#1A2FFB] dark:hover:bg-[#1A2FFB] text-white flex items-center justify-center gap-2 font-display text-xs uppercase tracking-widest font-bold border border-slate-800 dark:border-[#252A3F] transition-all duration-300 group shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none"
                 >
-                  Descargar Hoja de Vida
+                  <Download className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
+                  <span>Descargar CV Completo (PDF)</span>
                 </a>
               </div>
-            </div>
+
+            </SpotlightCard>
           </div>
 
-          {/* FORM */}
-          <div className="card-glass rounded-2xl p-8 border-slate-200 dark:border-slate-800 reveal-on-scroll stagger-2">
-            <h3 className="font-display text-xl font-bold mb-6 text-slate-900 dark:text-white">
-              Envíame un mensaje
-            </h3>
+          {/* COLUMNA DERECHA: FORMULARIO ACCESIBLE CON SPOTLIGHT CARD (7 COLS) */}
+          <div className="lg:col-span-7 reveal-on-scroll stagger-2">
+            <SpotlightCard className="card-clean rounded-[24px] p-6 sm:p-8">
+              <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white mb-6">
+                Envíame un Mensaje
+              </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="text-sm text-slate-600 dark:text-slate-400 mb-2 block font-medium">
-                  Nombre
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500 transition-colors"
-                  placeholder="Tu nombre"
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="contact-name" className="font-mono text-xs text-slate-600 dark:text-slate-400 mb-1.5 block">
+                    NOMBRE / EMPRESA *
+                  </label>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    required
+                    autoComplete="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Ej. Carlos Mendoza"
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-[#141724] border border-slate-200 dark:border-[#1E2337] rounded-xl text-slate-900 dark:text-white placeholder-slate-400 text-sm focus-visible:border-[#1A2FFB] focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none transition-colors"
+                  />
+                </div>
 
-              <div>
-                <label className="text-sm text-slate-600 dark:text-slate-400 mb-2 block font-medium">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500 transition-colors"
-                  placeholder="tu@email.com"
-                />
-              </div>
+                <div>
+                  <label htmlFor="contact-email" className="font-mono text-xs text-slate-600 dark:text-slate-400 mb-1.5 block">
+                    CORREO ELECTRÓNICO *
+                  </label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    spellCheck={false}
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="carlos@empresa.com"
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-[#141724] border border-slate-200 dark:border-[#1E2337] rounded-xl text-slate-900 dark:text-white placeholder-slate-400 text-sm focus-visible:border-[#1A2FFB] focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none transition-colors"
+                  />
+                </div>
 
-              <div>
-                <label className="text-sm text-slate-600 dark:text-slate-400 mb-2 block font-medium">
-                  Mensaje
-                </label>
-                <textarea
-                  rows={4}
-                  required
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500 transition-colors resize-none"
-                  placeholder="Escribe tu mensaje..."
-                />
-              </div>
+                <div>
+                  <label htmlFor="contact-message" className="font-mono text-xs text-slate-600 dark:text-slate-400 mb-1.5 block">
+                    MENSAJE O DESCRIPCIÓN DEL PROYECTO *
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows={4}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Cuéntame sobre los requerimientos, plazos o tecnologías que necesitas…"
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-[#141724] border border-slate-200 dark:border-[#1E2337] rounded-xl text-slate-900 dark:text-white placeholder-slate-400 text-sm focus-visible:border-[#1A2FFB] focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none transition-colors resize-none"
+                  />
+                </div>
 
-              <button
-                type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white rounded-lg transition-all duration-300 shadow-lg shadow-violet-600/30 hover:scale-[1.02] font-semibold"
-              >
-                Enviar mensaje
-                <Send className="w-4 h-4" />
-              </button>
-            </form>
+                {/* Zona de estado accesible con botón magnético */}
+                <div aria-live="polite" className="pt-2">
+                  <div ref={submitBtnRef} className="w-full">
+                    <button
+                      type="submit"
+                      disabled={isSending}
+                      className="w-full h-12 rounded-full bg-[#1A2FFB] hover:bg-[#0016EC] text-white flex items-center justify-center gap-2 font-display text-xs uppercase tracking-widest font-bold shadow-md shadow-blue-600/25 transition-all duration-300 active:scale-95 disabled:opacity-70 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none"
+                    >
+                      {isSending ? (
+                        <span className="font-mono">Enviando mensaje…</span>
+                      ) : sentSuccess ? (
+                        <span className="flex items-center gap-2 text-emerald-300 font-bold">
+                          <Check className="w-4 h-4" aria-hidden="true" /> ¡Mensaje Recibido con Éxito!
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <span>Enviar Mensaje</span>
+                          <Send className="w-3.5 h-3.5" aria-hidden="true" />
+                        </span>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </SpotlightCard>
           </div>
+
         </div>
 
       </div>
