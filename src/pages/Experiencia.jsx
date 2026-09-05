@@ -251,7 +251,7 @@ const Experiencia = () => {
                     </span>
                   ))}
                   <span
-                    className="ml-auto inline-flex items-center gap-0.5 text-[11px] font-display font-semibold text-slate-400 group-hover:text-[#1A2FFB] transition-colors uppercase tracking-wider"
+                    className="ml-auto inline-flex items-center gap-0.5 text-[11px] font-display font-semibold text-muted-foreground group-hover:text-[#1A2FFB] transition-colors uppercase tracking-wider"
                     aria-hidden="true"
                   >
                     <ArrowUpRight className="w-3 h-3" />
@@ -311,7 +311,7 @@ const Experiencia = () => {
               .map((category) => (
                 <div
                   key={category.title}
-                  className="grid grid-cols-2 sm:grid-cols-2 gap-4"
+                  className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
                 >
                   {category.items.map((tech) => {
                     const TechIcon = tech.icon;
@@ -367,7 +367,7 @@ const Experiencia = () => {
               </div>
 
               <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#151826] border border-slate-200/60 dark:border-[#1E2337]">
-                <p className="font-display text-2xl font-extrabold text-amber-500">
+                <p className="font-display text-2xl font-extrabold text-amber-600 dark:text-amber-400">
                   Scrum
                 </p>
                 <p className="font-mono text-[10px] text-slate-500 uppercase tracking-wider mt-0.5">

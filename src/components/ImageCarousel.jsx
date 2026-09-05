@@ -54,17 +54,17 @@ const ImageCarousel = ({ images, Icon, className = "" }) => {
               type="button"
               onClick={() => goTo(index - 1)}
               aria-label="Imagen anterior"
-              className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/85 dark:bg-black/50 backdrop-blur border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-[#1A2FFB] transition-colors focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none"
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/85 dark:bg-black/50 backdrop-blur border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-[#1A2FFB] transition-colors focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none"
             >
-              <ChevronLeft className="w-4 h-4" aria-hidden="true" />
+              <ChevronLeft className="w-5 h-5" aria-hidden="true" />
             </button>
             <button
               type="button"
               onClick={() => goTo(index + 1)}
               aria-label="Imagen siguiente"
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/85 dark:bg-black/50 backdrop-blur border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-[#1A2FFB] transition-colors focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/85 dark:bg-black/50 backdrop-blur border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-[#1A2FFB] transition-colors focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:outline-none"
             >
-              <ChevronRight className="w-4 h-4" aria-hidden="true" />
+              <ChevronRight className="w-5 h-5" aria-hidden="true" />
             </button>
 
             <span className="absolute bottom-2.5 right-3 z-10 font-mono text-[10px] px-2 py-0.5 rounded-full bg-black/50 text-white/90">

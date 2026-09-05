@@ -41,6 +41,13 @@ import plValores from "../assets/proyectos/proyeccionlaboral/04-valores.png";
 import plNovedades from "../assets/proyectos/proyeccionlaboral/05-novedades.png";
 import plPoliticas from "../assets/proyectos/proyeccionlaboral/06-politicas.png";
 
+import optiluxeLanding from "../assets/proyectos/optiluxe/01-landing.png";
+import optiluxeDashboard from "../assets/proyectos/optiluxe/02-dashboard.png";
+import optiluxeUsuarios from "../assets/proyectos/optiluxe/03-usuarios.png";
+import optiluxeInventario from "../assets/proyectos/optiluxe/04-inventario.png";
+import optiluxeReportes from "../assets/proyectos/optiluxe/05-reportes.png";
+import optiluxeCarrito from "../assets/proyectos/optiluxe/06-carrito.png";
+
 const proyectos = [
   {
     id: "01",
@@ -70,10 +77,10 @@ const proyectos = [
     title: "File Manager Enterprise",
     subtitle: "Gestor Documental Seguro con Control de Roles",
     description:
-      "Plataforma empresarial de almacenamiento y transferencia segura de archivos con autenticación robusta mediante JSON Web Tokens (JWT) y auditoría de operaciones por usuario.",
+      "Plataforma empresarial de almacenamiento y transferencia segura de archivos, construida en React con backend Node.js y almacenamiento de objetos en la nube vía Backblaze B2, con autenticación robusta mediante JSON Web Tokens (JWT) y auditoría de operaciones por usuario.",
     category: "Empresarial",
     typeBadge: "Herramienta Empresarial",
-    tags: ["Node.js", "Express", "Prisma ORM", "MySQL", "JWT Auth"],
+    tags: ["React", "Node.js", "Express", "Backblaze B2", "Prisma ORM", "MySQL", "JWT Auth"],
     github: null,
     demo: null,
     Icon: FolderOpen,
@@ -84,7 +91,7 @@ const proyectos = [
     features: [
       "Autenticación segura y cifrado de credenciales con JWT",
       "Permisos granulares según rol administrativo o de consulta",
-      "Subida, organización y descarga de archivos de gran volumen",
+      "Almacenamiento de objetos en Backblaze B2 para archivos de gran volumen",
       "Trazabilidad de descargas y auditoría de seguridad",
     ],
   },
@@ -96,7 +103,7 @@ const proyectos = [
       "Servicio backend automatizado para despacho masivo de correos electrónicos con plantillas HTML reactivas, colas asíncronas y verificación de entregabilidad en tiempo real.",
     category: "Backend & APIs",
     typeBadge: "Microservicio API",
-    tags: ["Node.js", "Express", "Nodemailer", "MySQL", "HTML Templates"],
+    tags: ["Next.js", "Nodemailer", "MySQL", "HTML Templates"],
     github: null,
     demo: null,
     Icon: Mail,
@@ -119,7 +126,7 @@ const proyectos = [
       "Sitio web oficial de la compañía Proyección Laboral S.A.S. Presentación de servicios de recursos humanos, gestión comercial y canales de atención interactivos.",
     category: "Frontend",
     typeBadge: "Web Corporativa",
-    tags: ["React", "Tailwind CSS", "Vite", "Vercel Deploy"],
+    tags: ["Next.js", "Tailwind CSS", "VPS Privado"],
     github: null,
     demo: "https://www.proyeccionlaboral.com/",
     Icon: Building2,
@@ -131,7 +138,7 @@ const proyectos = [
       "Diseño web responsive optimizado para móvil, tablet y escritorio",
       "Arquitectura de componentes ligeros con carga ultra rápida",
       "Paleta y tipografía adaptadas a la identidad de marca",
-      "Despliegue automatizado y CDN global en Vercel",
+      "Despliegue en VPS privado con dominio propio de la empresa",
     ],
   },
   {
@@ -142,12 +149,14 @@ const proyectos = [
       "Aplicación web a medida para ópticas y consultorios. Catálogo de productos con filtros técnicos, agendamiento de exámenes visuales y seguimiento de órdenes de laboratorio.",
     category: "Full Stack",
     typeBadge: "Aplicación Web",
-    tags: ["React", "Node.js", "Express", "MySQL", "Tailwind CSS"],
+    tags: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS"],
     github: null,
     demo: null,
     Icon: Lightbulb,
     featured: false,
     status: "Aplicación Web",
+    thumbnail: optiluxeDashboard,
+    images: [optiluxeLanding, optiluxeDashboard, optiluxeUsuarios, optiluxeInventario, optiluxeReportes, optiluxeCarrito],
     features: [
       "Módulo de citas oftalmológicas y registro de pacientes",
       "Catálogo interactivo con filtrado de cristales y monturas",
@@ -176,7 +185,7 @@ const Proyectos = () => {
 
         {/* Encabezado */}
         <div className="text-center md:text-left mb-12 reveal-on-scroll">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-[#121420] border border-slate-200 dark:border-[#1F2438] text-xs font-mono text-slate-600 dark:text-slate-400 mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-[#121420] border border-slate-200 dark:border-[#1F2438] text-xs font-mono text-slate-600 dark:text-slate-400 mb-3 transition-colors duration-300">
             <span>[ 03 // PROYECTOS_DESTACADOS ]</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight [text-wrap:balance]">
@@ -189,7 +198,7 @@ const Proyectos = () => {
 
         {/* Barra de Filtros Interactivos */}
         <div className="flex flex-wrap items-center gap-2 mb-12 reveal-on-scroll">
-          <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 mr-2" aria-hidden="true">
+          <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground mr-2" aria-hidden="true">
             <Filter className="w-3.5 h-3.5 text-[#1A2FFB]" /> FILTRO:
           </div>
           {categories.map((cat) => (
@@ -362,7 +371,7 @@ const Proyectos = () => {
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="font-mono text-[10px] text-slate-400 block">
+                      <span className="font-mono text-[10px] text-muted-foreground block">
                         PROYECTO_{proyecto.id}
                       </span>
                       <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">
@@ -412,8 +421,8 @@ const Proyectos = () => {
                         Demo en Vivo <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
                       </a>
                     ) : (
-                      <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
-                        <Lock className="w-3 h-3 text-slate-400" aria-hidden="true" /> {proyecto.status}
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-muted-foreground">
+                        <Lock className="w-3 h-3 text-muted-foreground" aria-hidden="true" /> {proyecto.status}
                       </span>
                     )}
 

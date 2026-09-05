@@ -1,14 +1,28 @@
 import { useState } from "react";
 import { ArrowUpRight, Copy, Check, Github, Terminal } from "lucide-react";
-import FondoAnimado from "../assets/FondoAnimadoV4.mp4";
-import FondoEstatico from "../assets/FondoEstaticoV4.jpg";
+import FondoAnimadoV4 from "../assets/FondoAnimadoV4.mp4";
+import FondoEstaticoV4 from "../assets/FondoEstaticoV4.jpg";
+import FondoAnimadoV5 from "../assets/FondoAnimadoV5.mp4";
+import FondoEstaticoV5 from "../assets/FondoEstaticoV5.mp4.jpg";
 import { useMagnetic } from "../hooks/useMagnetic";
+import { useTheme } from "../context/ThemeContext";
 import TextScramble from "../components/TextScramble";
-// import AsciiBrain3D from "../components/AsciiBrain3D";
 
 const Presentacion = () => {
+  const { theme } = useTheme();
+  const FondoEstatico = theme === "light" ? FondoEstaticoV5 : FondoEstaticoV4;
+  const FondoAnimado = theme === "light" ? FondoAnimadoV5 : FondoAnimadoV4;
+
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  // Reinicia el estado del crossfade al cambiar de tema (patrón de React para
+  // ajustar estado en render en vez de useEffect: evita el render en cascada).
+  const [prevTheme, setPrevTheme] = useState(theme);
+  if (theme !== prevTheme) {
+    setPrevTheme(theme);
+    setIsVideoLoaded(false);
+  }
 
   const primaryBtnRef = useMagnetic(0.25);
   const copyBtnRef = useMagnetic(0.2);
@@ -50,7 +64,7 @@ const Presentacion = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-[calc(100vh-3.5rem)] flex items-center justify-center overflow-hidden pt-16 pb-6 sm:pt-20 sm:pb-8 md:pt-24 md:pb-10 scroll-mt-24"
+      className="relative min-h-[calc(100dvh-3.5rem)] flex items-center justify-center overflow-hidden pt-16 pb-6 sm:pt-20 sm:pb-8 md:pt-24 md:pb-10 scroll-mt-24"
     >
       {/* Fondo Estático con Transición Suave al Video */}
       <img
@@ -66,6 +80,7 @@ const Presentacion = () => {
 
       {/* Fondo de Video Cinemático */}
       <video
+        key={theme}
         autoPlay
         loop
         muted
@@ -76,7 +91,11 @@ const Presentacion = () => {
           isVideoLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
-        <source src={FondoAnimado} type="video/mp4" />
+        <source
+          src={FondoAnimado}
+          type="video/mp4"
+          media="(min-width: 768px) and (prefers-reduced-motion: no-preference)"
+        />
       </video>
 
       {/* Gradiente sutil ambiental */}
@@ -87,9 +106,9 @@ const Presentacion = () => {
 
       {/* CONTENIDO PRINCIPAL COMPACTO Y PERFECTO PARA VISTAS CORTAS */}
       <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-          {/* COLUMNA IZQUIERDA: TESIS & DIRECCIÓN EDITORIAL */}
-          <div className="lg:col-span-7 xl:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
+        <div className="flex justify-center lg:justify-start">
+          {/* TESIS & DIRECCIÓN EDITORIAL */}
+          <div className="w-full max-w-3xl flex flex-col items-center text-center lg:items-start lg:text-left">
             {/* Status Pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#121420] border border-slate-200 dark:border-[#1F2438] text-[11px] sm:text-xs font-mono text-slate-700 dark:text-slate-300 shadow-sm mb-3 animate-hero-up group">
               <span
@@ -111,7 +130,7 @@ const Presentacion = () => {
             </h1>
 
             {/* Subtítulo enfocado en valor real */}
-            <p className="font-body text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mb-4 leading-relaxed animate-hero-up [animation-delay:0.2s] [text-wrap:pretty]">
+            <p className="font-body text-xs sm:text-sm md:text-base text-slate-800 dark:text-slate-200 max-w-xl mb-4 leading-relaxed animate-hero-up [animation-delay:0.2s] [text-wrap:pretty]">
               Desarrollador Full Stack enfocado en aplicaciones web de alto
               rendimiento, microservicios modulares y experiencias de usuario
               limpias con React, Node.js y bases de datos relacionales.
@@ -201,11 +220,6 @@ const Presentacion = () => {
               ))}
             </div>
           </div>
-
-          {/* COLUMNA DERECHA: CEREBRO ASCII 3D TRANSPARENTE COMPACTO */}
-          {/* <div className="lg:col-span-5 xl:col-span-5 flex justify-center animate-hero-up [animation-delay:0.35s]">
-            <AsciiBrain3D />
-          </div> */}
         </div>
 
         {/* INDICADOR DE SCROLL MINIMALISTA */}

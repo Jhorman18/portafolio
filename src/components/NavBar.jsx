@@ -90,7 +90,7 @@ const Navbar = () => {
           </button>
 
           {/* Botón Lusion Pill Magnético "Hablemos" */}
-          <div ref={ctaBtnRef} className="hidden sm:inline-block">
+          <div ref={ctaBtnRef} className="hidden md:inline-block">
             <a
               href="#contacto"
               className="group relative inline-flex items-center justify-center h-10 px-5 rounded-full bg-[#1A2FFB] hover:bg-[#0016EC] text-white text-xs font-display font-bold uppercase tracking-wider overflow-hidden transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none shadow-md shadow-blue-600/20"
@@ -121,7 +121,7 @@ const Navbar = () => {
       {/* MENÚ MÓVIL A PANTALLA COMPLETA */}
       <div
         id="mobile-menu"
-        className={`fixed inset-0 bg-white/98 dark:bg-[#090A0F]/98 backdrop-blur-2xl transition-all duration-300 md:hidden pointer-events-auto flex flex-col justify-between p-8 z-50 ${
+        className={`fixed inset-0 bg-white/98 dark:bg-[#090A0F]/98 backdrop-blur-2xl transition-all duration-300 md:hidden flex flex-col justify-between p-8 z-50 ${
           open
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"

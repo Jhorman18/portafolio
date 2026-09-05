@@ -53,6 +53,24 @@ const GlobalFloatingBackground = () => {
     const width = window.innerWidth || 1200;
     const height = window.innerHeight || 800;
 
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      // Distribuye los iconos en posiciones estáticas aleatorias, sin animarlos.
+      iconTypes.forEach((_, i) => {
+        const dom = domRefs.current[i];
+        if (dom) {
+          const x = Math.random() * width;
+          const y = Math.random() * height;
+          const rotation = Math.random() * 360;
+          dom.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotation}deg)`;
+        }
+      });
+      return;
+    }
+
     // Inicializar 20 partículas con velocidad pausada
     const particles = iconTypes.map(() => {
       const vxBase = (Math.random() - 0.5) * 0.4 || 0.2;
@@ -102,6 +120,8 @@ const GlobalFloatingBackground = () => {
 
     let animationFrameId;
 
+    const MAX_SPEED = 8;
+
     const updatePhysics = () => {
       const curWidth = window.innerWidth;
       const curHeight = window.innerHeight;
@@ -121,6 +141,13 @@ const GlobalFloatingBackground = () => {
           p.vx += Math.cos(angle) * force + mouseSpeedX * 0.15;
           p.vy += Math.sin(angle) * force + mouseSpeedY * 0.15;
           p.vr += (Math.random() - 0.5) * 3;
+
+          const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+          if (speed > MAX_SPEED) {
+            const scale = MAX_SPEED / speed;
+            p.vx *= scale;
+            p.vy *= scale;
+          }
         }
 
         p.x += p.vx;

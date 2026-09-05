@@ -52,24 +52,6 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-
-        // Tokens inspirados en Lusion e Igloo
-        brand: {
-          dark: "#090A0F",
-          surface: "#11131E",
-          surfaceLight: "#F8F9FD",
-          surfaceMuted: "#EDEFF7",
-          border: "#1E2337",
-          borderLight: "#E2E5F0",
-          cobalt: "#1A2FFB",
-          cobaltDark: "#0016EC",
-          volt: "#C1FF00",
-          voltHover: "#B0EA00",
-          cyan: "#00FFFF",
-          purple: "#8832F7",
-          coral: "#FF4C41",
-          emerald: "#10B981",
-        },
       },
       borderRadius: {
         pill: "6.25em",

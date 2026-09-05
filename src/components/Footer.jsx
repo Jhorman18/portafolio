@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Github, Linkedin, ArrowUp, Globe } from "lucide-react";
+import { Github, ArrowUp, Globe } from "lucide-react";
 
 const Footer = () => {
   const [timeStr, setTimeStr] = useState("");
@@ -26,7 +26,6 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/Jhorman18", label: "GitHub" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/jhorman-steven-cortes-lasso/", label: "LinkedIn" },
   ];
 
   const quickLinks = [
@@ -37,7 +36,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative pt-16 pb-12 border-t border-slate-200 dark:border-[#1A1D2D] bg-slate-50/50 dark:bg-[#07080C]">
+    <footer className="relative pt-16 pb-12 border-t border-slate-200 dark:border-[#1A1D2D] bg-slate-50/50 dark:bg-[#07080C] transition-colors duration-300">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         
         <div className="grid md:grid-cols-12 gap-10 md:gap-12 mb-12">
@@ -121,12 +120,9 @@ const Footer = () => {
 
         {/* LÍNEA DIVISORIA Y COPYRIGHT */}
         <div className="pt-8 border-t border-slate-200/80 dark:border-[#161927] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <p className="font-mono text-xs text-slate-500 dark:text-slate-500">
-            © {year} Jhorman Steven Cortes Lasso. Desarrollado con código limpio & accesibilidad WCAG 2.2.
+          <p className="font-mono text-xs text-slate-500 dark:text-slate-400">
+            © {year} Jhorman Steven Cortes Lasso.
           </p>
-          <span className="font-mono text-[11px] text-slate-400 dark:text-slate-600">
-            v2.1 // CLEAN ARCHITECTURE
-          </span>
         </div>
 
       </div>

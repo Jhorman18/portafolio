@@ -1,8 +1,14 @@
 import { useState } from "react";
-import { Mail, MapPin, Send, Github, Linkedin, Copy, Check, Download } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { Mail, MapPin, Send, Github, Copy, Check, Download, AlertCircle } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import SpotlightCard from "../components/SpotlightCard";
 import { useMagnetic } from "../hooks/useMagnetic";
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID_OWNER = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_OWNER;
+const EMAILJS_TEMPLATE_ID_CLIENT = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_CLIENT;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const Contacto = () => {
   useScrollReveal();
@@ -15,6 +21,7 @@ const Contacto = () => {
   const [copied, setCopied] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [sentSuccess, setSentSuccess] = useState(false);
+  const [sendError, setSendError] = useState(false);
 
   const cvBtnRef = useMagnetic(0.25);
   const submitBtnRef = useMagnetic(0.2);
@@ -43,22 +50,47 @@ const Contacto = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSending(true);
-    
-    // Simulación de envío fluido con feedback
-    setTimeout(() => {
-      setIsSending(false);
+    setSendError(false);
+
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    };
+
+    try {
+      // Notificación al dueño del portafolio: es el envío crítico, si falla se
+      // muestra error al visitante.
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID_OWNER,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      // Auto-respuesta al cliente: best-effort. Si falla, el mensaje del
+      // visitante ya llegó igual, así que no se le muestra error por esto.
+      emailjs
+        .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_CLIENT, templateParams, EMAILJS_PUBLIC_KEY)
+        .catch(() => {});
+
       setSentSuccess(true);
       setFormData({ name: "", email: "", message: "" });
       setTimeout(() => setSentSuccess(false), 4000);
-    }, 800);
+    } catch (error) {
+      console.error("Error al enviar el formulario de contacto:", error);
+      setSendError(true);
+      setTimeout(() => setSendError(false), 5000);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/Jhorman18", label: "GitHub" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/jhorman-steven-cortes-lasso/", label: "LinkedIn" },
   ];
 
   return (
@@ -89,13 +121,13 @@ const Contacto = () => {
               </h3>
 
               {/* Email con opción de copiar */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#141724] border border-slate-200/80 dark:border-[#1E2337] flex items-center justify-between gap-3 group">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#141724] border border-slate-200/80 dark:border-[#1E2337] flex items-center justify-between gap-3 group transition-colors duration-300">
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="w-10 h-10 rounded-xl bg-[#1A2FFB]/10 flex items-center justify-center text-[#1A2FFB] shrink-0" aria-hidden="true">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-mono text-[10px] text-slate-400">CORREO ELECTRÓNICO</p>
+                    <p className="font-mono text-[10px] text-muted-foreground">CORREO ELECTRÓNICO</p>
                     <a
                       href={`mailto:${email}`}
                       className="font-body text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-[#1A2FFB] dark:hover:text-[#3B54FF] truncate block transition-colors focus-visible:ring-1 focus-visible:ring-[#1A2FFB] rounded"
@@ -122,7 +154,7 @@ const Contacto = () => {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-mono text-[10px] text-slate-400">UBICACIÓN ACTUAL</p>
+                  <p className="font-mono text-[10px] text-muted-foreground">UBICACIÓN ACTUAL</p>
                   <p className="font-body text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
                     Bogotá, Colombia (GMT-5)
                   </p>
@@ -131,7 +163,7 @@ const Contacto = () => {
 
               {/* Redes Sociales */}
               <div>
-                <p className="font-mono text-[10px] text-slate-400 uppercase tracking-widest mb-3">
+                <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest mb-3">
                   Perfiles Profesionales
                 </p>
                 <div className="flex gap-3">
@@ -239,6 +271,10 @@ const Contacto = () => {
                         <span className="flex items-center gap-2 text-emerald-300 font-bold">
                           <Check className="w-4 h-4" aria-hidden="true" /> ¡Mensaje Recibido con Éxito!
                         </span>
+                      ) : sendError ? (
+                        <span className="flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" aria-hidden="true" /> Error al Enviar, Intenta de Nuevo
+                        </span>
                       ) : (
                         <span className="flex items-center gap-2">
                           <span>Enviar Mensaje</span>
@@ -247,6 +283,15 @@ const Contacto = () => {
                       )}
                     </button>
                   </div>
+                  {sendError && (
+                    <p className="mt-3 text-xs text-red-500 dark:text-red-400 font-body text-center">
+                      No se pudo enviar el mensaje. Escríbeme directo a{" "}
+                      <a href={`mailto:${email}`} className="underline hover:text-red-600 dark:hover:text-red-300">
+                        {email}
+                      </a>
+                      .
+                    </p>
+                  )}
                 </div>
               </form>
             </SpotlightCard>
