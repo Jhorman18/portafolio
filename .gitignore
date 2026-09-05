@@ -29,4 +29,17 @@ dist-ssr
 skills-lock.json
 design-systems/
 ANALISIS_*_DESIGN_SYSTEM.md
+.playwright-mcp/
+
+# Credenciales locales (nunca deben llegar al repo)
+.env
+.env.*
+!.env.example
+credentials.json
+credentials.*.json
+
+# Configuración local de Claude Code (no se comparte en el repo)
+.claude/
+CLAUDE.md
+.mcp.json
 

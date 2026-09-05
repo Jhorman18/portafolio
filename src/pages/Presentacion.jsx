@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { ArrowUpRight, Copy, Check, Github, Terminal } from "lucide-react";
-import FondoAnimado from "../assets/FondoAnimado.mp4";
-import FondoEstatico from "../assets/FondoEstatico.jpg";
+import FondoAnimado from "../assets/FondoAnimadoV4.mp4";
+import FondoEstatico from "../assets/FondoEstaticoV4.jpg";
 import { useMagnetic } from "../hooks/useMagnetic";
 import TextScramble from "../components/TextScramble";
-import AsciiBrain3D from "../components/AsciiBrain3D";
+// import AsciiBrain3D from "../components/AsciiBrain3D";
 
 const Presentacion = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -78,9 +78,6 @@ const Presentacion = () => {
       >
         <source src={FondoAnimado} type="video/mp4" />
       </video>
-
-      {/* Capa de contraste y textura limpia */}
-      <div className="absolute inset-0 bg-slate-50/85 dark:bg-[#090A0F]/85 backdrop-blur-[2px] transition-colors duration-300" />
 
       {/* Gradiente sutil ambiental */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(26,47,251,0.12),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(26,47,251,0.18),rgba(0,0,0,0))] pointer-events-none" />
@@ -206,9 +203,9 @@ const Presentacion = () => {
           </div>
 
           {/* COLUMNA DERECHA: CEREBRO ASCII 3D TRANSPARENTE COMPACTO */}
-          <div className="lg:col-span-5 xl:col-span-5 flex justify-center animate-hero-up [animation-delay:0.35s]">
+          {/* <div className="lg:col-span-5 xl:col-span-5 flex justify-center animate-hero-up [animation-delay:0.35s]">
             <AsciiBrain3D />
-          </div>
+          </div> */}
         </div>
 
         {/* INDICADOR DE SCROLL MINIMALISTA */}

@@ -15,6 +15,31 @@ import {
 import ProyectoModal from "../components/ProyectoModal";
 import SpotlightCard from "../components/SpotlightCard";
 import TextScramble from "../components/TextScramble";
+import PlaceholderImage from "../components/PlaceholderImage";
+
+import hireflowLanding from "../assets/proyectos/hireflow/01-landing.png";
+import hireflowDashboard from "../assets/proyectos/hireflow/02-dashboard.png";
+import hireflowCandidatos from "../assets/proyectos/hireflow/03-candidatos.png";
+import hireflowRequisiciones from "../assets/proyectos/hireflow/04-requisiciones.png";
+
+import filemanagerLogin from "../assets/proyectos/filemanager/01-login.png";
+import filemanagerTrabajadores from "../assets/proyectos/filemanager/02-trabajadores.png";
+import filemanagerEmpresas from "../assets/proyectos/filemanager/03-empresas.png";
+import filemanagerDocumentos from "../assets/proyectos/filemanager/04-documentos.png";
+import filemanagerUsuarios from "../assets/proyectos/filemanager/05-usuarios.png";
+
+import evamailerLogin from "../assets/proyectos/evamailer/01-login.png";
+import evamailerDashboard from "../assets/proyectos/evamailer/02-dashboard.png";
+import evamailerUsuarios from "../assets/proyectos/evamailer/03-usuarios.png";
+import evamailerSeguimiento from "../assets/proyectos/evamailer/04-seguimiento.png";
+import evamailerEnviar from "../assets/proyectos/evamailer/05-enviar.png";
+
+import plHero from "../assets/proyectos/proyeccionlaboral/01-hero.png";
+import plServicios from "../assets/proyectos/proyeccionlaboral/02-servicios.png";
+import plConocenos from "../assets/proyectos/proyeccionlaboral/03-conocenos.png";
+import plValores from "../assets/proyectos/proyeccionlaboral/04-valores.png";
+import plNovedades from "../assets/proyectos/proyeccionlaboral/05-novedades.png";
+import plPoliticas from "../assets/proyectos/proyeccionlaboral/06-politicas.png";
 
 const proyectos = [
   {
@@ -31,11 +56,13 @@ const proyectos = [
     Icon: Users,
     featured: true,
     status: "Sistema en Producción",
+    thumbnail: hireflowDashboard,
+    images: [hireflowLanding, hireflowDashboard, hireflowCandidatos, hireflowRequisiciones],
     features: [
-      "Pipeline interactivo tipo Kanban para seguimiento de candidatos",
-      "Filtros avanzados por competencias laborales, salarios y estados",
-      "Modelado de datos relacional y seguro con Prisma ORM y MySQL",
-      "Panel de métricas y exportación de reportes de contratación",
+      "Landing institucional con acceso seguro por roles (Selección, Comercial, Administración)",
+      "Dashboard con métricas en tiempo real: vacantes, contratados y cumplimiento",
+      "Gestión de candidatos con búsqueda y filtros por columna",
+      "Seguimiento de requisiciones por cliente, cargo y estado del proceso",
     ],
   },
   {
@@ -52,6 +79,8 @@ const proyectos = [
     Icon: FolderOpen,
     featured: false,
     status: "Enterprise Interno",
+    thumbnail: filemanagerDocumentos,
+    images: [filemanagerLogin, filemanagerTrabajadores, filemanagerDocumentos, filemanagerUsuarios, filemanagerEmpresas],
     features: [
       "Autenticación segura y cifrado de credenciales con JWT",
       "Permisos granulares según rol administrativo o de consulta",
@@ -73,11 +102,13 @@ const proyectos = [
     Icon: Mail,
     featured: false,
     status: "Microservicio Activo",
+    thumbnail: evamailerDashboard,
+    images: [evamailerLogin, evamailerDashboard, evamailerUsuarios, evamailerSeguimiento, evamailerEnviar],
     features: [
-      "Arquitectura modular desacoplada consumible vía API REST",
-      "Generación dinámica de plantillas HTML personalizadas",
-      "Manejo de colas y reportes automáticos de estado de envío",
-      "Integración nativa con servidores SMTP empresariales",
+      "Dashboard con métricas de envíos, aperturas y tasa de apertura en tiempo real",
+      "Editor de correos HTML (TinyMCE) con envío masivo vía carga de Excel",
+      "Seguimiento de campañas con trazabilidad de aperturas por destinatario",
+      "Gestión de usuarios internos con roles y remitentes institucionales",
     ],
   },
   {
@@ -90,10 +121,12 @@ const proyectos = [
     typeBadge: "Web Corporativa",
     tags: ["React", "Tailwind CSS", "Vite", "Vercel Deploy"],
     github: null,
-    demo: "https://portafolio-ten-zeta.vercel.app/",
+    demo: "https://www.proyeccionlaboral.com/",
     Icon: Building2,
     featured: false,
     status: "En Vivo",
+    thumbnail: plServicios,
+    images: [plHero, plServicios, plConocenos, plValores, plNovedades, plPoliticas],
     features: [
       "Diseño web responsive optimizado para móvil, tablet y escritorio",
       "Arquitectura de componentes ligeros con carga ultra rápida",
@@ -197,6 +230,23 @@ const Proyectos = () => {
                   }}
                   className="md:col-span-2 lg:col-span-2 card-clean card-clean-hover rounded-[28px] overflow-hidden flex flex-col justify-between cursor-pointer group relative reveal-on-scroll stagger-1 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none"
                 >
+                  {/* Miniatura de Portada */}
+                  <div className="relative aspect-[21/9] sm:aspect-[3/1]">
+                    {proyecto.thumbnail ? (
+                      <img
+                        src={proyecto.thumbnail}
+                        alt={`Captura de pantalla de ${proyecto.title}`}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <PlaceholderImage
+                        Icon={Icon}
+                        label={proyecto.subtitle}
+                        className="w-full h-full"
+                      />
+                    )}
+                  </div>
+
                   {/* Cabecera Técnica de Simulación */}
                   <div className="p-6 md:p-8 bg-slate-50/80 dark:bg-[#0E1019] border-b border-slate-200/80 dark:border-[#1A1D2D] flex flex-wrap items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
@@ -288,6 +338,23 @@ const Proyectos = () => {
                 }}
                 className={`card-clean card-clean-hover rounded-[24px] overflow-hidden flex flex-col justify-between cursor-pointer group relative reveal-on-scroll stagger-${(idx % 3) + 1} focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none`}
               >
+                {/* Miniatura de Portada */}
+                <div className="relative aspect-video">
+                  {proyecto.thumbnail ? (
+                    <img
+                      src={proyecto.thumbnail}
+                      alt={`Captura de pantalla de ${proyecto.title}`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <PlaceholderImage
+                      Icon={Icon}
+                      label={proyecto.subtitle}
+                      className="w-full h-full"
+                    />
+                  )}
+                </div>
+
                 {/* Header de la tarjeta */}
                 <div className="p-6 bg-slate-50/60 dark:bg-[#0E1019] border-b border-slate-100 dark:border-[#1A1D2D] flex items-center justify-between">
                   <div className="flex items-center gap-3">

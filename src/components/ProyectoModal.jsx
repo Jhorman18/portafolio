@@ -9,6 +9,7 @@ import {
   Terminal,
   Layers,
 } from "lucide-react";
+import ImageCarousel from "./ImageCarousel";
 
 /**
  * ProyectoModal — Portal-Based Accessible Dialog
@@ -98,6 +99,15 @@ const ProyectoModal = ({ proyecto, onClose }) => {
 
   const { Icon } = proyecto;
 
+  // Usa `proyecto.images` (reales) si existen; si no, arma placeholders
+  // a partir de `features` para que la galería funcione desde ya.
+  const galleryImages = proyecto.images
+    ? proyecto.images.map((src, i) => ({
+        src,
+        alt: proyecto.features?.[i] || proyecto.title,
+      }))
+    : (proyecto.features || []).map((feat) => ({ src: null, alt: feat }));
+
   const modal = (
     <div
       ref={overlayRef}
@@ -155,6 +165,9 @@ const ProyectoModal = ({ proyecto, onClose }) => {
 
         {/* Contenido con Scroll Suave */}
         <div className="p-5 sm:p-8 overflow-y-auto space-y-6 flex-1 overscroll-contain">
+          {/* Galería de capturas */}
+          <ImageCarousel images={galleryImages} Icon={Icon} />
+
           {/* Header Info */}
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
