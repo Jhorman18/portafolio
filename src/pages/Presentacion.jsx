@@ -94,7 +94,7 @@ const Presentacion = () => {
         <source
           src={FondoAnimado}
           type="video/mp4"
-          media="(min-width: 768px) and (prefers-reduced-motion: no-preference)"
+          media="(prefers-reduced-motion: no-preference)"
         />
       </video>
 
