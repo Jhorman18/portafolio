@@ -4,33 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <title>Jhorman Cortes — Desarrollador Full Stack en Bogotá</title>
+    <!-- SEO básico -->
+    <title>Jhorman Cortes — Desarrollador Full Stack en Bogotá | React, Node.js y SQL</title>
     <meta
       name="description"
-      content="Construyo aplicaciones web, APIs y automatizaciones para empresas y equipos de producto. React, Node.js y bases de datos SQL."
+      content="Jhorman Cortes, desarrollador full stack en Bogotá con más de 3 años de experiencia. Construyo aplicaciones web, APIs y automatizaciones para empresas con React, Node.js y bases de datos SQL."
     />
+    <meta name="keywords" content="Jhorman Cortes, desarrollador full stack, desarrollador web Bogotá, programador Colombia, React, Node.js, Express, Prisma, MySQL, PostgreSQL, automatizaciones, n8n, APIs, software empresarial, portafolio" />
     <meta name="author" content="Jhorman Steven Cortes Lasso" />
-    <meta name="robots" content="index, follow" />
+    <meta name="creator" content="Jhorman Steven Cortes Lasso" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="geo.region" content="CO-DC" />
+    <meta name="geo.placename" content="Bogotá" />
     <link rel="canonical" href="https://portafolio-ten-zeta.vercel.app/" />
+    <link rel="alternate" hreflang="es" href="https://portafolio-ten-zeta.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://portafolio-ten-zeta.vercel.app/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="alternate" type="text/plain" title="Resumen para modelos de IA" href="/llms.txt" />
+    <link rel="me" href="https://github.com/Jhorman18" />
+    <link rel="me" href="https://www.linkedin.com/in/jhorman-cortes/" />
 
-    <meta property="og:type" content="website" />
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn, Telegram, Slack, Discord) -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Jhorman Cortes · Portafolio" />
     <meta property="og:locale" content="es_CO" />
     <meta property="og:url" content="https://portafolio-ten-zeta.vercel.app/" />
     <meta property="og:title" content="Jhorman Cortes — Desarrollador Full Stack en Bogotá" />
     <meta
       property="og:description"
-      content="Construyo aplicaciones web, APIs y automatizaciones para empresas y equipos de producto. React, Node.js y bases de datos SQL."
+      content="Construyo aplicaciones web, APIs y automatizaciones que las empresas usan todos los días. React, Node.js y SQL."
     />
-    <meta property="og:image" content="https://portafolio-ten-zeta.vercel.app/og-image.png" />
+    <meta property="og:image" content="https://portafolio-ten-zeta.vercel.app/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://portafolio-ten-zeta.vercel.app/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:image:alt" content="Jhorman Cortes, desarrollador full stack: «Construyo software que se sostiene», junto al tablero de HireFlow." />
+    <meta property="profile:first_name" content="Jhorman" />
+    <meta property="profile:last_name" content="Cortes" />
+    <meta property="profile:username" content="Jhorman18" />
 
-    <meta name="theme-color" content="#0E0D0C" />
+    <!-- X / Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jhorman Cortes — Desarrollador Full Stack en Bogotá" />
+    <meta name="twitter:description" content="Construyo aplicaciones web, APIs y automatizaciones que las empresas usan todos los días. React, Node.js y SQL." />
+    <meta name="twitter:image" content="https://portafolio-ten-zeta.vercel.app/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Jhorman Cortes, desarrollador full stack: «Construyo software que se sostiene»." />
+
+    <!-- Apariencia e íconos -->
+    <meta name="theme-color" content="#0E0D0C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#EFEBE4" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="application-name" content="Jhorman Cortes" />
+    <meta name="apple-mobile-web-app-title" content="Jhorman Cortes" />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="256x256" href="/icon-256.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,24 +84,119 @@
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reducido');
       })();
     </script>
+    <!-- El resumen estático de #root es para buscadores y modelos de IA que no ejecutan JavaScript; React lo reemplaza al montar. -->
+    <style>.js .resumen-estatico { display: none; }</style>
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Jhorman Steven Cortes Lasso",
-        "jobTitle": "Desarrollador Full Stack",
-        "url": "https://portafolio-ten-zeta.vercel.app/",
-        "email": "mailto:jhormanc150@gmail.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Bogotá", "addressCountry": "CO" },
-        "sameAs": ["https://github.com/Jhorman18", "https://www.linkedin.com/in/jhorman-cortes/"],
-        "knowsAbout": ["JavaScript", "React", "Node.js", "Express", "Prisma", "MySQL", "PostgreSQL", "Tailwind CSS", "n8n", "Python"]
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://portafolio-ten-zeta.vercel.app/#sitio",
+            "url": "https://portafolio-ten-zeta.vercel.app/",
+            "name": "Jhorman Cortes · Portafolio",
+            "inLanguage": "es-CO",
+            "publisher": { "@id": "https://portafolio-ten-zeta.vercel.app/#persona" }
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://portafolio-ten-zeta.vercel.app/#pagina",
+            "url": "https://portafolio-ten-zeta.vercel.app/",
+            "name": "Jhorman Cortes — Desarrollador Full Stack en Bogotá",
+            "inLanguage": "es-CO",
+            "dateModified": "2026-11-17",
+            "isPartOf": { "@id": "https://portafolio-ten-zeta.vercel.app/#sitio" },
+            "mainEntity": { "@id": "https://portafolio-ten-zeta.vercel.app/#persona" },
+            "primaryImageOfPage": "https://portafolio-ten-zeta.vercel.app/og-image.jpg"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://portafolio-ten-zeta.vercel.app/#persona",
+            "name": "Jhorman Steven Cortes Lasso",
+            "alternateName": "Jhorman Cortes",
+            "givenName": "Jhorman",
+            "familyName": "Cortes",
+            "jobTitle": "Desarrollador Full Stack",
+            "description": "Desarrollador full stack en Bogotá con más de 3 años de experiencia construyendo aplicaciones web, APIs y automatizaciones para empresas.",
+            "url": "https://portafolio-ten-zeta.vercel.app/",
+            "image": "https://portafolio-ten-zeta.vercel.app/jhorman-cortes.jpg",
+            "email": "mailto:jhormanc150@gmail.com",
+            "address": { "@type": "PostalAddress", "addressLocality": "Bogotá", "addressRegion": "Bogotá D.C.", "addressCountry": "CO" },
+            "nationality": { "@type": "Country", "name": "Colombia" },
+            "sameAs": ["https://github.com/Jhorman18", "https://www.linkedin.com/in/jhorman-cortes/"],
+            "knowsLanguage": [
+              { "@type": "Language", "name": "Español", "alternateName": "es" },
+              { "@type": "Language", "name": "Inglés (básico, A2)", "alternateName": "en" }
+            ],
+            "hasCredential": [
+              { "@type": "EducationalOccupationalCredential", "name": "Técnico en Programación de Software", "credentialCategory": "Técnico" },
+              { "@type": "EducationalOccupationalCredential", "name": "Tecnólogo en Análisis y Desarrollo de Software (en curso, finaliza en diciembre de 2026)", "credentialCategory": "Tecnólogo" }
+            ],
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "Desarrollador Full Stack",
+              "occupationLocation": { "@type": "City", "name": "Bogotá" },
+              "skills": "React, JavaScript, Node.js, Express, Prisma, MySQL, MariaDB, PostgreSQL, Tailwind CSS, Python, n8n, Pandas, Git, Scrum"
+            },
+            "knowsAbout": ["Desarrollo web full stack", "React", "JavaScript", "Node.js", "Express", "APIs REST", "Prisma", "MySQL", "MariaDB", "PostgreSQL", "Tailwind CSS", "Next.js", "Python", "n8n", "Automatización de procesos", "Análisis de datos", "Software empresarial", "Scrum"],
+            "makesOffer": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interfaces web", "description": "Interfaces rápidas, accesibles y responsive con React." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "APIs y backend", "description": "Servicios con Node.js y Express: autenticación, roles, validación y documentación." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bases de datos", "description": "Modelos de datos y migraciones con Prisma, MySQL y MariaDB." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Software empresarial", "description": "Plataformas internas a medida: gestión documental, selección de personal y operación comercial." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automatizaciones", "description": "Flujos con n8n y Python que eliminan trabajo repetitivo e integran sistemas." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Análisis de datos", "description": "ETL, Pandas y dashboards para tomar decisiones." } }
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://portafolio-ten-zeta.vercel.app/#proyectos",
+            "name": "Proyectos de Jhorman Cortes",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "HireFlow", "applicationCategory": "BusinessApplication", "description": "ATS de selección y reclutamiento con acceso por roles para Selección, Comercial y Administración. Reemplazó 7 archivos de Excel.", "dateCreated": "2023", "creator": { "@id": "https://portafolio-ten-zeta.vercel.app/#persona" } } },
+              { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "File Manager Enterprise", "applicationCategory": "BusinessApplication", "description": "Gestor documental en la nube con permisos por rol, JWT y auditoría de descargas (Backblaze B2).", "dateCreated": "2026", "creator": { "@id": "https://portafolio-ten-zeta.vercel.app/#persona" } } },
+              { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "EvaMailer", "applicationCategory": "BusinessApplication", "description": "Envío masivo de correos desde Excel con editor HTML y seguimiento de aperturas, en Next.js.", "dateCreated": "2025", "creator": { "@id": "https://portafolio-ten-zeta.vercel.app/#persona" } } },
+              { "@type": "ListItem", "position": 4, "item": { "@type": "WebSite", "name": "Proyección Laboral S.A.S.", "url": "https://www.proyeccionlaboral.com/", "description": "Sitio corporativo responsive de una empresa de recursos humanos, en Next.js.", "dateCreated": "2025", "creator": { "@id": "https://portafolio-ten-zeta.vercel.app/#persona" } } },
+              { "@type": "ListItem", "position": 5, "item": { "@type": "SoftwareApplication", "name": "Optilux Manager", "applicationCategory": "BusinessApplication", "description": "Gestión para ópticas: inventario, pacientes, citas, carrito de venta y pedidos de laboratorio.", "dateCreated": "2026", "creator": { "@id": "https://portafolio-ten-zeta.vercel.app/#persona" } } }
+            ]
+          }
+        ]
       }
     </script>
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="resumen-estatico">
+        <h1>Jhorman Cortes — Desarrollador Full Stack en Bogotá</h1>
+        <p>Desarrollador full stack con más de 3 años de experiencia. Diseño y construyo aplicaciones web, APIs y automatizaciones que las empresas usan todos los días.</p>
+        <h2>Servicios</h2>
+        <ul>
+          <li>Interfaces web con React, responsive y accesibles.</li>
+          <li>APIs y backend con Node.js, Express y JWT.</li>
+          <li>Bases de datos con Prisma, MySQL, MariaDB y PostgreSQL.</li>
+          <li>Software empresarial a medida: gestión documental, selección de personal, operación comercial.</li>
+          <li>Automatizaciones con n8n y Python.</li>
+          <li>Análisis de datos: ETL, Pandas y dashboards.</li>
+        </ul>
+        <h2>Proyectos</h2>
+        <ul>
+          <li><strong>HireFlow</strong> (2023 – hoy): ATS de selección y reclutamiento; pasó de 7 archivos de Excel a una sola plataforma.</li>
+          <li><strong>File Manager Enterprise</strong> (2026 – hoy): gestor documental con permisos por rol y auditoría de descargas.</li>
+          <li><strong>EvaMailer</strong> (2025 – hoy): envío masivo de correos con seguimiento de aperturas, en Next.js.</li>
+          <li><strong>Proyección Laboral S.A.S.</strong> (2025): sitio corporativo, <a href="https://www.proyeccionlaboral.com/">proyeccionlaboral.com</a>.</li>
+          <li><strong>Optilux Manager</strong> (2026): gestión para ópticas con inventario, citas y ventas.</li>
+        </ul>
+        <h2>Contacto</h2>
+        <p>
+          <a href="mailto:jhormanc150@gmail.com">jhormanc150@gmail.com</a> ·
+          <a href="https://www.linkedin.com/in/jhorman-cortes/">LinkedIn</a> ·
+          <a href="https://github.com/Jhorman18">GitHub</a> ·
+          <a href="/cv_Jhorman_Cortes.pdf">CV</a>
+        </p>
+      </main>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

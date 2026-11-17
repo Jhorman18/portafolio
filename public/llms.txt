@@ -1,0 +1,39 @@
+# Jhorman Cortes — Desarrollador Full Stack en Bogotá
+
+> Jhorman Steven Cortes Lasso es un desarrollador full stack en Bogotá, Colombia, con más de 3 años de experiencia. Diseña y construye aplicaciones web, APIs y automatizaciones que empresas usan a diario. Trabaja con React, Node.js, Express, Prisma y bases de datos SQL (MySQL, MariaDB, PostgreSQL), además de Python y n8n para automatizar procesos.
+
+Disponible para proyectos y para unirse a equipos. Le gusta entender cómo funciona el negocio antes de escribir código, y quitarle a la gente el trabajo repetitivo.
+
+## Perfil
+
+- Ubicación: Bogotá, Colombia
+- Experiencia: 3+ años; 4 sistemas en producción
+- Enfoque: full stack (interfaz, API y datos)
+- Formación: Técnico en Programación de Software; Tecnólogo en Análisis y Desarrollo de Software (finaliza en diciembre de 2026)
+- Idiomas: español nativo, inglés básico (A2)
+- Forma de trabajo: Scrum, entregas cortas y visibles, soporte después de salir a producción
+
+## Servicios
+
+- Interfaces web: React, diseño responsive, accesibilidad
+- APIs y backend: Node.js, Express, autenticación JWT, roles
+- Bases de datos: Prisma, MySQL, MariaDB, PostgreSQL
+- Software empresarial a medida: gestión documental, selección de personal, operación comercial
+- Automatizaciones: n8n, Python, integraciones entre sistemas
+- Análisis de datos: ETL, Pandas, dashboards
+
+## Proyectos
+
+- HireFlow (2023 – hoy): ATS de selección y reclutamiento con roles para Selección, Comercial y Administración. Reemplazó 7 archivos de Excel. React 19, Node.js, Express, MySQL, Prisma.
+- File Manager Enterprise (2026 – hoy): gestor documental en la nube con JWT, permisos por rol y auditoría de descargas. React, Node.js, Prisma, MySQL, Backblaze B2.
+- EvaMailer (2025 – hoy): envío masivo de correos desde Excel, editor HTML y seguimiento de aperturas. Nació en Python (2024) y se migró a Next.js (2025).
+- Proyección Laboral S.A.S. (2025): sitio corporativo de una empresa de recursos humanos. Next.js, Tailwind CSS, VPS. https://www.proyeccionlaboral.com/
+- Optilux Manager (2026): gestión para ópticas con inventario, pacientes, citas, carrito de venta y pedidos de laboratorio. React, Node.js, PostgreSQL.
+
+## Contacto
+
+- Portafolio: https://portafolio-ten-zeta.vercel.app/
+- Correo: jhormanc150@gmail.com
+- LinkedIn: https://www.linkedin.com/in/jhorman-cortes/
+- GitHub: https://github.com/Jhorman18
+- CV (PDF): https://portafolio-ten-zeta.vercel.app/cv_Jhorman_Cortes.pdf
