@@ -3,6 +3,7 @@
 
 export const EMAIL = 'jhormanc150@gmail.com';
 export const GITHUB = 'https://github.com/Jhorman18';
+export const LINKEDIN = 'https://www.linkedin.com/in/jhorman-cortes/';
 export const CV = '/cv_Jhorman_Cortes.pdf';
 
 export const navegacion = [

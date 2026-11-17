@@ -1,4 +1,4 @@
-import { CV, GITHUB } from '../data/contenido';
+import { CV, GITHUB, LINKEDIN } from '../data/contenido';
 import { Reloj } from './Basicos';
 
 export default function Footer() {
@@ -14,6 +14,7 @@ export default function Footer() {
           <p>Bogotá, <Reloj /></p>
           <p className="pie-links">
             <a className="link" href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a className="link" href={LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a className="link" href={CV} download>CV</a>
             <a className="link" href="#inicio">Volver arriba ↑</a>
           </p>

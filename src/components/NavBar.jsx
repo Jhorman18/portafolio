@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useTheme } from '../context/ThemeContext';
 import { useTaller } from '../three/store';
-import { CV, EMAIL, GITHUB, navegacion } from '../data/contenido';
+import { CV, EMAIL, GITHUB, LINKEDIN, navegacion } from '../data/contenido';
 
 const reducido = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -118,6 +118,7 @@ export default function Navbar() {
         <div className="contenedor pie label">
           <a className="link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
           <a className="link" href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a className="link" href={LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
           <a className="link" href={CV} download>Descargar CV</a>
         </div>
       </dialog>

@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 import Boton from '../components/Boton';
 import Titular from '../components/Titular';
 import { Confirmar, Etiqueta, Reloj } from '../components/Basicos';
-import { CV, EMAIL, GITHUB } from '../data/contenido';
+import { CV, EMAIL, GITHUB, LINKEDIN } from '../data/contenido';
 import { useTaller, vivo } from '../three/store';
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -152,6 +152,7 @@ export default function Contacto() {
               <dt className="label muted">Enlaces</dt>
               <dd className="enlaces">
                 <a className="link" href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                <a className="link" href={LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
                 <a className="link" href={CV} download>Descargar CV</a>
               </dd>
             </div>
