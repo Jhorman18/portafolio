@@ -1,72 +1,69 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-CO" class="dark">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
+    <title>Jhorman Cortes — Desarrollador Full Stack en Bogotá</title>
+    <meta
+      name="description"
+      content="Construyo aplicaciones web, APIs y automatizaciones para empresas y equipos de producto. React, Node.js y bases de datos SQL."
+    />
+    <meta name="author" content="Jhorman Steven Cortes Lasso" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://portafolio-ten-zeta.vercel.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:url" content="https://portafolio-ten-zeta.vercel.app/" />
+    <meta property="og:title" content="Jhorman Cortes — Desarrollador Full Stack en Bogotá" />
+    <meta
+      property="og:description"
+      content="Construyo aplicaciones web, APIs y automatizaciones para empresas y equipos de producto. React, Node.js y bases de datos SQL."
+    />
+    <meta property="og:image" content="https://portafolio-ten-zeta.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#0E0D0C" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="256x256" href="/icon-256.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <title>Jhorman Cortes | Desarrollador Web Full Stack</title>
-    <meta name="title" content="Jhorman Cortes | Desarrollador Web Full Stack" />
-    <meta
-      name="description"
-      content="Portafolio de Jhorman Cortes, desarrollador full stack especializado en React, Node.js, Tailwind CSS y bases de datos SQL. Transformo ideas en experiencias digitales modernas, rápidas e intuitivas."
-    />
-
-    <meta
-      name="keywords"
-      content="Jhorman Cortes, desarrollador web, full stack developer, react developer, nodejs developer, tailwind css, portafolio, software developer, programador Colombia, frontend developer, backend developer"
-    />
-
-    <meta name="author" content="Jhorman Steven Cortes Lasso" />
-
-    <meta name="robots" content="index, follow" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tudominio.com/" />
-    <meta property="og:title" content="Jhorman Cortes | Desarrollador Web Full Stack" />
-    <meta
-      property="og:description"
-      content="Construyo aplicaciones web modernas, escalables y visualmente elegantes usando React, Node.js, Tailwind CSS y más."
-    />
-    <meta property="og:image" content="https://tudominio.com/preview.jpg" />
-
-    <meta name="theme-color" content="#00d4c7" />
-
-    <link rel="canonical" href="https://tudominio.com/" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/fraunces/v38/6NUh8FyLNQOQZAnv9bYEvDiIdE9Ea92uMiIk_WBq8U_9v0c2Wa0K7iN7hzFUPJH58njr1a03gg7S2nfgRYIcaRyTCf7Tp0hGNw.woff2" />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,144,600,50;1,144,400,50&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"
     />
 
+    <script>
+      // Antes del primer pintado: tema guardado (oscuro por defecto) y marcas para el CSS.
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        try {
+          if (localStorage.getItem('theme') === 'light') d.classList.remove('dark');
+        } catch (e) { /* sin almacenamiento: se queda el tema oscuro */ }
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reducido');
+      })();
+    </script>
+
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Jhorman Steven Cortes Lasso",
-      "jobTitle": "Desarrollador Web Full Stack",
-      "url": "https://tudominio.com",
-      "image": "https://tudominio.com/fotoPerfil.jpg",
-      "sameAs": [
-        "https://github.com/Jhorman18"
-      ],
-      "description": "Desarrollador full stack especializado en React, Node.js, Tailwind CSS y SQL.",
-      "knowsAbout": [
-        "JavaScript",
-        "React",
-        "Node.js",
-        "Tailwind CSS",
-        "Prisma ORM",
-        "APIs REST",
-        "SQL"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jhorman Steven Cortes Lasso",
+        "jobTitle": "Desarrollador Full Stack",
+        "url": "https://portafolio-ten-zeta.vercel.app/",
+        "email": "mailto:jhormanc150@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Bogotá", "addressCountry": "CO" },
+        "sameAs": ["https://github.com/Jhorman18"],
+        "knowsAbout": ["JavaScript", "React", "Node.js", "Express", "Prisma", "MySQL", "PostgreSQL", "Tailwind CSS", "n8n", "Python"]
+      }
     </script>
   </head>
 

@@ -4,7 +4,7 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "dark";
+    try { return localStorage.getItem('theme') === 'light' ? 'light' : 'dark'; } catch { return 'dark'; }
   });
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const ThemeProvider = ({ children }) => {
     } else {
       root.classList.remove("dark");
     }
-    localStorage.setItem("theme", theme);
+    try { localStorage.setItem('theme', theme); } catch { /* Preferencia en memoria. */ }
   }, [theme]);
 
   const toggleTheme = () => {
@@ -28,4 +28,5 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => useContext(ThemeContext);

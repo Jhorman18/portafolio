@@ -1,0 +1,239 @@
+﻿/* ==========================================================================
+   Componentes del sistema "Taller" (DESIGN.md §6)
+   ========================================================================== */
+
+/* ---------- Tipos ---------- */
+.display, .h1, .h2, .h3, .fraunces {
+  font-family: var(--f-display); font-weight: 600;
+  font-optical-sizing: auto; font-variation-settings: 'SOFT' 50;
+  text-wrap: balance;
+}
+.display { font-size: var(--t-display); line-height: .95; letter-spacing: -.035em; }
+.h1 { font-size: var(--t-h1); line-height: 1; letter-spacing: -.03em; }
+.h2 { font-size: var(--t-h2); line-height: 1.02; letter-spacing: -.025em; }
+.h3 { font-size: var(--t-h3); line-height: 1.15; letter-spacing: -.01em; }
+.display em, .h1 em, .h2 em, .h3 em, .fraunces em { font-style: italic; font-weight: 400; }
+.lead { font-size: var(--t-lead); line-height: 1.5; color: var(--text-muted); text-wrap: pretty; max-width: 34em; }
+.body { font-size: var(--t-body); line-height: 1.6; text-wrap: pretty; }
+.small { font-size: var(--t-small); line-height: 1.5; }
+.label { font-family: var(--f-mono); font-size: var(--t-label); line-height: 1.4; letter-spacing: .02em; font-weight: 400; }
+.muted { color: var(--text-muted); }
+.ok { color: var(--ok); }
+
+/* Dato pendiente: visible a propósito (§0) */
+.confirmar {
+  font-family: var(--f-mono); font-style: normal; font-weight: 400; font-size: .8125rem; letter-spacing: .02em;
+  line-height: 1.4; color: var(--cool);
+  text-decoration: underline dotted; text-underline-offset: 3px;
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.saltar {
+  position: fixed; left: var(--margen); top: 12px; z-index: 100; padding: 12px 16px;
+  background: var(--text); color: var(--bg); text-decoration: none; border-radius: var(--r-input);
+  transform: translateY(-200%);
+}
+.saltar:focus-visible { transform: none; }
+
+/* ---------- Layout ---------- */
+.contenedor { width: 100%; max-width: var(--ancho-max); margin-inline: auto; padding-inline: var(--margen); }
+.grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+@media (max-width: 1023px) { .grid12 { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .grid12 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.seccion { position: relative; z-index: var(--z-contenido); padding-block: calc(var(--seccion) / 2); }
+
+/* Zona del avatar: franja libre de texto. No pinta nada; solo reserva el espacio. */
+.zona-avatar { pointer-events: none; min-width: 0; }
+
+/* ---------- Botón primario: la única píldora del sistema ---------- */
+.btn {
+  --btn-bg: var(--accent); --btn-fg: var(--bg);
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: 52px; padding: 0 28px; border: 0; border-radius: var(--r-pill);
+  background: var(--btn-bg); color: var(--btn-fg);
+  font: 500 15px/1 var(--f-texto); letter-spacing: 0; text-decoration: none; cursor: pointer;
+  overflow: hidden; isolation: isolate;
+  transition: transform var(--dur-xs) var(--ease-out), background-color var(--dur-sm) var(--ease-out), color var(--dur-sm) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn .roll { display: block; position: relative; height: 1.2em; line-height: 1.2em; overflow: hidden; }
+.btn .roll > span { display: block; transition: transform var(--dur-sm) var(--ease-out); white-space: nowrap; }
+.btn .flecha { display: block; transition: transform var(--dur-sm) var(--ease-out); }
+@media (hover: hover) {
+  .btn:not([aria-disabled="true"]):hover .roll > span { transform: translateY(-100%); }
+  .btn:not([aria-disabled="true"]):hover .flecha { transform: translateX(4px); }
+}
+.btn:not([aria-disabled="true"]):active { transform: scale(.97); }
+.btn:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: var(--r-pill); }
+.btn:disabled { --btn-bg: var(--surface-2); --btn-fg: var(--text-muted); cursor: not-allowed; }
+.btn .progreso-btn {
+  position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--btn-fg); opacity: .55;
+  transform-origin: left; transform: scaleX(0); z-index: -1;
+}
+.btn.is-cargando { cursor: progress; }
+.btn.is-cargando .progreso-btn { animation: progreso-btn 6s var(--ease-out) forwards; }
+@keyframes progreso-btn { from { transform: scaleX(0); } to { transform: scaleX(.92); } }
+.btn.is-exito { --btn-bg: transparent; --btn-fg: var(--ok); box-shadow: inset 0 0 0 1px var(--ok); }
+
+/* ---------- Link editorial ---------- */
+.link {
+  color: var(--text); text-decoration: none; cursor: pointer;
+  background-image: linear-gradient(var(--accent), var(--accent)), linear-gradient(var(--line), var(--line));
+  background-size: 0% 1px, 100% 1px; background-position: 0 100%, 0 100%; background-repeat: no-repeat;
+  padding: 0 0 2px; transition: background-size 300ms var(--ease-out);
+  border: 0; background-color: transparent;
+}
+@media (hover: hover) { .link:hover { background-size: 100% 1px, 100% 1px; } }
+.link[aria-pressed="true"], .link[aria-current="true"] { background-size: 100% 1px, 100% 1px; }
+.link:disabled { color: var(--text-muted); cursor: not-allowed; background-size: 0% 1px, 100% 1px; }
+
+.btn-texto { border: 0; background: transparent; padding: 10px 0; min-height: 44px; font: 500 15px/1 var(--f-texto); color: var(--text); cursor: pointer; }
+.btn-icono {
+  display: inline-grid; place-items: center; width: 44px; height: 44px; border: 0; background: transparent;
+  color: var(--text-muted); border-radius: 50%; cursor: pointer; transition: color var(--dur-xs) linear;
+}
+.btn-icono:hover { color: var(--text); }
+
+/* ---------- Etiqueta de sección: número + raya que se dibuja + nombre ---------- */
+.etiqueta { display: flex; align-items: center; gap: 10px; color: var(--text-muted); }
+.etiqueta .raya { display: block; width: 24px; height: 1px; background: currentColor; transform-origin: left; }
+
+/* ---------- Tags de tecnología: mono separado por · (nunca píldoras) ---------- */
+.tags { display: flex; flex-wrap: wrap; gap: 4px 0; font-family: var(--f-mono); font-size: 12px; line-height: 1.5; color: var(--text-muted); letter-spacing: .02em; }
+.tags li { white-space: nowrap; }
+.tags li + li::before { content: '·'; padding-inline: 8px; color: var(--line); }
+
+/* ---------- Pantalla montada ---------- */
+.pantalla {
+  position: relative; display: block; border-radius: var(--r-panel); background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line), var(--sombra-montaje); overflow: hidden;
+}
+.pantalla .barra { display: flex; align-items: center; gap: 6px; height: 28px; padding-inline: 12px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.pantalla .barra i { display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.pantalla img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+
+/* ---------- Inputs: línea inferior + label flotante en mono ---------- */
+.campo { position: relative; display: block; padding-top: 18px; }
+.campo label {
+  position: absolute; left: 0; top: 36px; transform-origin: left top;
+  font-family: var(--f-mono); font-size: 15px; letter-spacing: .02em; color: var(--text-muted);
+  transition: transform var(--dur-sm) var(--ease-out), color var(--dur-xs) linear; pointer-events: none;
+}
+.campo input, .campo textarea {
+  display: block; width: 100%; min-height: 56px; padding: 14px 0 10px; border: 0; border-radius: 0; background: transparent;
+  color: var(--text); font: 400 18px/1.4 var(--f-texto); outline: none; resize: vertical; box-shadow: none;
+}
+.campo textarea { min-height: 112px; }
+.campo .linea { position: relative; display: block; height: 1px; background: var(--line); }
+.campo .linea::after { content: ''; position: absolute; inset: 0; background: var(--accent); transform: scaleX(0); transition: transform var(--dur-md) var(--ease-out); }
+.campo:focus-within label, .campo.is-lleno label { transform: translateY(-30px) scale(.8667); color: var(--text); }
+.campo:focus-within .linea::after { transform: scaleX(1); }
+.campo.is-error .linea { background: var(--error); }
+.campo.is-error .linea::after { background: var(--error); }
+.campo .msg { display: block; margin-top: 8px; font-size: 14px; line-height: 1.4; color: var(--error); }
+
+/* ---------- Métrica ---------- */
+.metrica { display: grid; gap: 8px; }
+.metrica .num { display: block; font-family: var(--f-display); font-weight: 600; font-size: var(--t-h1); line-height: 1; letter-spacing: -.03em; font-variation-settings: 'SOFT' 50; white-space: nowrap; }
+.metrica .lbl { display: block; color: var(--text-muted); }
+
+/* ---------- Barra de progreso ---------- */
+.progreso { position: fixed; inset: 0 0 auto 0; height: 1px; z-index: var(--z-progreso); background: var(--accent); transform-origin: left; transform: scaleX(0); pointer-events: none; }
+
+/* ---------- Cursor-etiqueta ---------- */
+.cursor-etiqueta {
+  position: fixed; left: 0; top: 0; z-index: var(--z-cursor); width: 72px; height: 72px; margin: -36px 0 0 -36px;
+  display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--bg);
+  font: 500 14px/1 var(--f-texto); pointer-events: none; transform: translate3d(-200px, -200px, 0);
+  transition: scale var(--dur-sm) var(--ease-out); scale: 0;
+}
+.cursor-etiqueta.is-visible { scale: 1; }
+
+/* ==========================================================================
+   Navbar y menú móvil
+   ========================================================================== */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: var(--z-nav); height: var(--nav-alto);
+  border-bottom: 1px solid transparent;
+  transition: transform 300ms var(--ease-inout), background-color var(--dur-sm) linear, border-color var(--dur-sm) linear;
+}
+.nav.is-scroll { background: color-mix(in srgb, var(--bg) 80%, transparent); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom-color: var(--line); }
+.nav.is-oculta { transform: translateY(-100%); }
+.nav .contenedor { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.nav .marca { font-family: var(--f-display); font-weight: 600; font-size: 20px; letter-spacing: -.01em; text-decoration: none; font-variation-settings: 'SOFT' 50; white-space: nowrap; }
+.nav .links { display: flex; align-items: center; gap: 32px; }
+.nav .navlink { font: 500 14px/1 var(--f-texto); text-decoration: none; color: var(--text-muted); padding-block: 8px; transition: color var(--dur-xs) linear; }
+.nav .navlink:hover, .nav .navlink[aria-current="true"] { color: var(--text); }
+.nav .acciones { display: flex; align-items: center; gap: 24px; }
+.nav .acciones .cv { font: 500 14px/1.2 var(--f-texto); }
+.nav .solo-movil { display: none; }
+@media (max-width: 833px) {
+  .nav .links, .nav .acciones .cv { display: none; }
+  .nav .solo-movil { display: inline-flex; align-items: center; }
+  .nav .acciones { gap: 4px; }
+}
+
+.menu-movil {
+  position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+  background: var(--bg); color: var(--text);
+}
+.menu-movil::backdrop { background: transparent; }
+.menu-movil[open] { display: flex; flex-direction: column; }
+.menu-movil .cabeza { height: var(--nav-alto); display: flex; align-items: center; justify-content: space-between; flex: none; }
+.menu-movil .marca-menu { font-size: 20px; }
+.menu-movil nav { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+.menu-movil nav a { font-family: var(--f-display); font-weight: 600; font-size: var(--t-h2); line-height: 1.15; letter-spacing: -.025em; text-decoration: none; font-variation-settings: 'SOFT' 50; display: block; padding-block: 4px; }
+.menu-movil .pie { display: grid; gap: 12px; justify-items: start; padding-block: 32px max(32px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); }
+.menu-movil .pie a { min-height: 44px; display: inline-flex; align-items: center; }
+.menu-movil nav a, .menu-movil .pie { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-md) var(--ease-out), transform var(--dur-md) var(--ease-out); }
+.menu-movil.is-abierto nav a, .menu-movil.is-abierto .pie { opacity: 1; transform: none; }
+.menu-movil.is-abierto nav a:nth-child(2) { transition-delay: 60ms; }
+.menu-movil.is-abierto nav a:nth-child(3) { transition-delay: 120ms; }
+.menu-movil.is-abierto nav a:nth-child(4) { transition-delay: 180ms; }
+.menu-movil.is-abierto .pie { transition-delay: 240ms; }
+
+/* ==========================================================================
+   Revelados (§9). El estado inicial lo fija el CSS; GSAP anima hasta el reposo.
+   ========================================================================== */
+.titular .linea { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.titular .linea > span { display: block; }
+.js .titular:not(.is-in) .linea > span { transform: translateY(105%); }
+.js .titular:not(.is-in) em { opacity: 0; font-variation-settings: 'SOFT' 0; }
+.js .aparecer:not(.is-in) { opacity: 0; transform: translateY(12px); }
+.js .etiqueta.revelar:not(.is-in) .raya { transform: scaleX(0); }
+.js .etiqueta.revelar:not(.is-in) .txt { opacity: 0; }
+.reducido .titular:not(.is-in) .linea > span, .reducido .aparecer:not(.is-in) { transform: none; opacity: 0; }
+.reducido .titular:not(.is-in) em { font-variation-settings: 'SOFT' 50; }
+.reducido .etiqueta.revelar:not(.is-in) .raya { transform: none; }
+
+/* ==========================================================================
+   Lienzo 3D único (§8.10) y avatar
+   ========================================================================== */
+.lienzo3d {
+  position: fixed !important; inset: 0; width: 100vw; height: 100vh; height: 100dvh;
+  z-index: var(--z-canvas); pointer-events: none !important;
+  opacity: 0; transition: opacity 400ms var(--ease-out);
+}
+.lienzo3d.is-listo { opacity: 1; }
+.lienzo3d canvas { pointer-events: none !important; }
+
+/* Avatar acoplado (móvil y movimiento reducido, §8.17) */
+.avatar-muelle {
+  position: fixed; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: calc(var(--z-canvas) - 1);
+  width: 132px; height: 132px; padding: 0; border-radius: 50%;
+  background: var(--surface); border: 1px solid var(--line); cursor: pointer;
+  opacity: 0; transition: opacity 300ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.avatar-muelle.is-listo { opacity: 1; }
+
+.avatar-ocultar {
+  position: fixed; left: var(--margen); bottom: max(12px, env(safe-area-inset-bottom)); z-index: calc(var(--z-nav) - 5);
+  min-height: 44px; padding: 0 2px; border: 0; background: transparent; cursor: pointer;
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .02em; color: var(--text-muted);
+  text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px;
+  transition: color var(--dur-xs) linear;
+}
+.avatar-ocultar:hover { color: var(--text); }
+.avatar-ocultar span { background: color-mix(in srgb, var(--bg) 82%, transparent); padding: 4px 6px; margin-inline: -6px; border-radius: 2px; }
+

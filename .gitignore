@@ -43,3 +43,9 @@ credentials.*.json
 CLAUDE.md
 .mcp.json
 
+
+# Resultados locales de validación
+test-results/
+playwright-report/
+preview-*.png
+avatar-3d/

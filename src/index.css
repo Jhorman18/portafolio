@@ -1,302 +1,98 @@
+/* Sistema "Taller" — tokens (DESIGN.md §5) y base.
+   Tema oscuro predeterminado: <html class="dark">. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
-    --background: 220 25% 98%;
-    --foreground: 224 40% 10%;
+    --bg: #EFEBE4; --surface: #E5E0D7; --surface-2: #D9D3C8; --line: #CBC4B8;
+    --text: #151311; --text-muted: #5E5850;
+    --accent: #A8431A; --accent-soft: rgba(168, 67, 26, .10); --cool: #3346C8;
+    --ok: #4F7A3A; --error: #B33A2E;
+    --sombra-montaje: 0 40px 80px -24px rgba(21, 19, 17, .28);
+    --grano-opacidad: .02;
+    color-scheme: light;
 
-    --card: 0 0% 100%;
-    --card-foreground: 224 40% 10%;
+    --f-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --f-texto: 'Geist', ui-sans-serif, system-ui, sans-serif;
+    --f-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 40% 10%;
+    --t-display: clamp(3rem, 8vw, 7.5rem);
+    --t-h1: clamp(2.5rem, 6vw, 5rem);
+    --t-h2: clamp(2.25rem, 5vw, 4rem);
+    --t-h3: clamp(1.375rem, 2.2vw, 1.75rem);
+    --t-lead: clamp(1.125rem, 1.6vw, 1.375rem);
+    --t-body: 1rem;
+    --t-small: .875rem;
+    --t-label: .8125rem;
 
-    --primary: 236 96% 54%;
-    --primary-foreground: 0 0% 100%;
+    --margen: clamp(1rem, 4vw, 3rem);
+    --ancho-max: 1440px;
+    --ancho-texto: 680px;
+    --gutter: 24px;
+    --seccion: 192px;
 
-    --secondary: 220 18% 94%;
-    --secondary-foreground: 220 20% 20%;
+    --r-tag: 2px; --r-input: 6px; --r-panel: 12px; --r-pill: 999px;
 
-    --muted: 220 14% 92%;
-    --muted-foreground: 220 12% 42%;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+    --dur-xs: 150ms; --dur-sm: 250ms; --dur-md: 450ms; --dur-lg: 700ms; --dur-xl: 1400ms;
 
-    --accent: 76 100% 50%;
-    --accent-foreground: 224 40% 10%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 236 96% 54%;
-
-    --radius: 20px;
-
-    --font-display: 'Syne', sans-serif;
-    --font-body: 'Plus Jakarta Sans', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
+    --z-contenido: 10; --z-canvas: 20; --z-cursor: 40; --z-nav: 50; --z-detalle: 80; --z-progreso: 90;
+    --nav-alto: 64px;
+    /* Alto del avatar en pantalla (§8.12): 38 % del viewport en desktop, 30 % en tablet */
+    --avatar-alto: 38vh;
   }
-
   .dark {
-    --background: 230 28% 5%;
-    --foreground: 210 30% 98%;
-
-    --card: 230 27% 9%;
-    --card-foreground: 210 30% 98%;
-
-    --popover: 230 27% 9%;
-    --popover-foreground: 210 30% 98%;
-
-    --primary: 236 96% 54%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 230 20% 14%;
-    --secondary-foreground: 210 30% 98%;
-
-    --muted: 230 20% 15%;
-    --muted-foreground: 220 15% 65%;
-
-    --accent: 76 100% 50%;
-    --accent-foreground: 230 28% 5%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 230 20% 17%;
-    --input: 230 20% 17%;
-    --ring: 236 96% 54%;
+    --bg: #0E0D0C; --surface: #181614; --surface-2: #221F1C; --line: #2E2A26;
+    --text: #EFEBE4; --text-muted: #9A938A;
+    --accent: #E2703A; --accent-soft: rgba(226, 112, 58, .12); --cool: #7C8CF2;
+    --ok: #8FB07A; --error: #E0675A;
+    --sombra-montaje: 0 40px 80px -20px rgba(0, 0, 0, .5);
+    --grano-opacidad: .03;
+    color-scheme: dark;
   }
-}
+  @media (max-width: 1023px) { :root { --seccion: 128px; --avatar-alto: 30vh; } }
+  @media (max-width: 639px) { :root { --seccion: 96px; --gutter: 16px; } }
 
-@layer base {
   html {
-    scroll-behavior: smooth;
+    background: var(--bg); color: var(--text);
+    font-family: var(--f-texto); line-height: 1.6;
+    -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased; scrollbar-gutter: stable;
+    font-variant-numeric: tabular-nums;
+  }
+  body { min-height: 100svh; overflow-x: clip; }
+  ::selection { background: var(--accent); color: var(--bg); }
+  :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 2px; }
+  h1, h2, h3 { text-wrap: balance; }
+  p { max-width: 65ch; text-wrap: pretty; }
+  dialog { color: inherit; }
+
+  /* Grano de película (§5.3): ruido SVG fijo sobre todo el sitio */
+  body::after {
+    content: ''; position: fixed; inset: 0; z-index: 95; pointer-events: none;
+    background: url('/grano.svg'); background-size: 240px 240px;
+    opacity: var(--grano-opacidad); mix-blend-mode: overlay;
   }
 
-  body {
-    @apply bg-slate-50 text-slate-900 dark:bg-[#090A0F] dark:text-slate-100 transition-colors duration-300 antialiased;
-    font-family: var(--font-body);
+  /* Cambio de tema: 400 ms en fondo, texto y bordes (§9) */
+  .tema-transicion, .tema-transicion *, .tema-transicion *::before, .tema-transicion *::after {
+    transition: background-color 400ms var(--ease-inout), color 400ms var(--ease-inout),
+      border-color 400ms var(--ease-inout), fill 400ms var(--ease-inout), stroke 400ms var(--ease-inout) !important;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-  }
+  /* Lenis */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-stopped { overflow: clip; }
 
-  p {
-    text-wrap: pretty;
-  }
-
-  code, pre, .font-mono {
-    font-family: var(--font-mono);
-  }
-}
-
-@layer components {
-  /* Card con estética limpia y bordes finos estilo Lusion/Igloo */
-  .card-clean {
-    @apply bg-white dark:bg-[#11131E] border border-slate-200/90 dark:border-[#1E2337] shadow-sm dark:shadow-none transition-all duration-300;
-  }
-
-  .card-clean-hover {
-    @apply hover:border-slate-300 dark:hover:border-[#2E3550] hover:shadow-md dark:hover:shadow-[0_8px_30px_rgb(0,0,0,0.4)];
-  }
-
-  /* Badge estilo Terminal / Monospace */
-  .badge-tech {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide uppercase;
-  }
-
-  /* Botón interactivo estilo Lusion con animación de flecha deslizable */
-  .btn-lusion-primary {
-    @apply relative inline-flex items-center justify-center h-12 px-7 rounded-full bg-[#1A2FFB] hover:bg-[#0016EC] text-white font-display text-xs uppercase tracking-widest font-bold overflow-hidden transition-all duration-300 shadow-md shadow-blue-600/20 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none;
-  }
-
-  .btn-lusion-dark {
-    @apply relative inline-flex items-center justify-center h-12 px-7 rounded-full bg-slate-900 dark:bg-[#1A1D2B] hover:bg-[#1A2FFB] dark:hover:bg-[#1A2FFB] text-white font-display text-xs uppercase tracking-widest font-bold border border-slate-800 dark:border-[#252A3F] hover:border-[#1A2FFB] overflow-hidden transition-all duration-300 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none;
-  }
-
-  .btn-lusion-ghost {
-    @apply relative inline-flex items-center justify-center h-12 px-7 rounded-full bg-white dark:bg-[#11131E] hover:bg-slate-100 dark:hover:bg-[#181B2B] text-slate-900 dark:text-white font-display text-xs uppercase tracking-widest font-bold border border-slate-200 dark:border-[#1E2337] hover:border-slate-300 dark:hover:border-[#2E3550] transition-all duration-300 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1A2FFB] focus-visible:ring-offset-2 focus-visible:outline-none;
-  }
-}
-
-/* Scrollbar Minimalista Ultra-Fino */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.3);
-  border-radius: 9999px;
-  transition: background 0.2s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(26, 47, 251, 0.7);
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(100, 116, 139, 0.3) transparent;
-}
-
-/* Scroll Reveal Cinemático */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.stagger-1 { transition-delay: 0.04s; }
-.stagger-2 { transition-delay: 0.08s; }
-.stagger-3 { transition-delay: 0.12s; }
-.stagger-4 { transition-delay: 0.16s; }
-.stagger-5 { transition-delay: 0.20s; }
-.stagger-6 { transition-delay: 0.24s; }
-.stagger-7 { transition-delay: 0.28s; }
-.stagger-8 { transition-delay: 0.32s; }
-
-/* Animación de pulso vivo (Live Indicator) */
-@keyframes live-pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(0.85);
-  }
-}
-
-.animate-live-pulse {
-  animation: live-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Animación sutil de desvanecimiento hacia arriba para el Hero */
-@keyframes hero-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-hero-up {
-  animation: hero-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Animación de Marquee Infinito */
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 28s linear infinite;
-  will-change: transform;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   Modal Dialog — Cinematic Entrance Animations
-   ═══════════════════════════════════════════════════════════ */
-
-/* Backdrop container — just enables pointer events immediately */
-.modal-backdrop-enter {
-  animation: modal-backdrop-in 0.1s ease forwards;
-}
-
-@keyframes modal-backdrop-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* Backdrop blur + opacity fade */
-.modal-backdrop-fade {
-  animation: modal-bg-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes modal-bg-fade {
-  from {
-    opacity: 0;
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-  }
-  to {
-    opacity: 1;
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-  }
-}
-
-/* Panel — scale up with elastic overshoot */
-.modal-panel-enter {
-  animation: modal-panel-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
-}
-
-@keyframes modal-panel-up {
-  from {
-    opacity: 0;
-    transform: scale(0.92) translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════ */
-
-/* Soporte para Reducción de Movimiento (Accesibilidad WCAG 2.2) */
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .reveal-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .animate-marquee {
-    animation: none !important;
-  }
-
-  .modal-backdrop-fade,
-  .modal-panel-enter,
-  .modal-backdrop-enter {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    backdrop-filter: blur(24px) !important;
-    -webkit-backdrop-filter: blur(24px) !important;
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 1ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 150ms !important; scroll-behavior: auto !important;
+    }
   }
 }
