@@ -7,8 +7,8 @@
 
 @layer base {
   :root {
-    /* Claro: crema clásica 60 % · verde abeto 30 % · rojo tomate 10 % */
-    --bg: #F4ECDC; --surface: #ECE1CC; --surface-2: #E2D4BA; --line: #D2C3A6;
+    /* Claro: blanco 60 % · verde abeto 30 % · rojo tomate 10 % */
+    --bg: #FFFFFF; --surface: #F4F6F4; --surface-2: #E8ECE9; --line: #D7DED9;
     --text: #1D3A2E; --text-muted: #435D4F;
     --accent: #BC3820; --accent-soft: rgba(188, 56, 32, .10); --cool: #2D5B88;
     --ok: #2E6B45; --error: #9C2416;
