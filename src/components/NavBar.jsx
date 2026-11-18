@@ -34,7 +34,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0E0D0C' : '#EFEBE4');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#1E1520' : '#F4ECDC');
   }, [theme]);
 
   const cambiarTema = () => {
