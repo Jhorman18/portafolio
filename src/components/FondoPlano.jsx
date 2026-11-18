@@ -44,7 +44,7 @@ export default function FondoPlano() {
     // Zonas donde no se dibuja: el texto del hero y la barra superior (con margen), para no restarles legibilidad.
     const zonasLibres = () => {
       const c = canvas.getBoundingClientRect();
-      return [...document.querySelectorAll('.hero-texto, .hero-meta, .hero-ctas, body > #root nav, body > #root header')].map((el) => {
+      return [...document.querySelectorAll('.hero-texto, .hero-meta, .hero-ctas, .hero-pie a, .ensamble-meta, .ensamble-pie, body > #root nav, body > #root header')].map((el) => {
         const r = el.getBoundingClientRect();
         return { x0: r.left - c.left - 28, y0: r.top - c.top - 28, x1: r.right - c.left + 28, y1: r.bottom - c.top + 28 };
       }).filter((z) => z.x1 > z.x0 && z.y1 > z.y0);
